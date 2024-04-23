@@ -1,7 +1,9 @@
 package com.imechanic.backend.project.security.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.imechanic.backend.project.controller.dto.AuthenticationLoginDTORequest;
 import com.imechanic.backend.project.controller.dto.AuthenticationSignUpDTORequest;
+import com.imechanic.backend.project.controller.dto.LoginDTOResponse;
 import com.imechanic.backend.project.controller.dto.SignUpDTOResponse;
 import com.imechanic.backend.project.enumeration.Role;
 import com.imechanic.backend.project.exception.CredencialesIncorrectas;
@@ -16,6 +18,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -52,6 +55,33 @@ public class IUserDetailService implements UserDetailsService {
                 cuenta.isCredentialNoExpired(),
                 cuenta.isAccountNoLocked(),
                 Collections.singleton(authority));
+    }
+
+    public LoginDTOResponse loginUser(AuthenticationLoginDTORequest loginDTORequest) {
+        String correoElectronico = loginDTORequest.correoElectronico();
+        String contrasenia = loginDTORequest.contrasenia();
+
+        Authentication authentication = authenticate(correoElectronico, contrasenia);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        UserDetails userDetails = loadUserByUsername(correoElectronico);
+        if (!userDetails.isEnabled()) {
+            throw new CredencialesIncorrectas("La cuenta no está habilitada");
+        }
+
+        String accessToken = jwtUtils.createToken(authentication);
+
+        return new LoginDTOResponse(correoElectronico, "User logged successfully", accessToken, true);
+    }
+
+    private Authentication authenticate(String correoElectronico, String contrasenia) {
+        UserDetails userDetails = loadUserByUsername(correoElectronico);
+
+        if (userDetails == null || !passwordEncoder.matches(contrasenia, userDetails.getPassword())) {
+            throw new CredencialesIncorrectas("Invalid email or password");
+        }
+
+        return new UsernamePasswordAuthenticationToken(correoElectronico, userDetails.getPassword(), userDetails.getAuthorities());
     }
 
     public SignUpDTOResponse createUser(AuthenticationSignUpDTORequest signUpDTORequest) {

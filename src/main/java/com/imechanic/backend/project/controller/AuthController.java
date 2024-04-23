@@ -1,6 +1,8 @@
 package com.imechanic.backend.project.controller;
 
+import com.imechanic.backend.project.controller.dto.AuthenticationLoginDTORequest;
 import com.imechanic.backend.project.controller.dto.AuthenticationSignUpDTORequest;
+import com.imechanic.backend.project.controller.dto.LoginDTOResponse;
 import com.imechanic.backend.project.controller.dto.SignUpDTOResponse;
 import com.imechanic.backend.project.security.service.IUserDetailService;
 import jakarta.validation.Valid;
@@ -23,6 +25,11 @@ public class AuthController {
     @GetMapping("/confirmation/{token}")
     public String confirmarCuenta(@PathVariable String token) {
         return userDetailService.confirmarCuenta(token);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginDTOResponse> login(@Valid @RequestBody AuthenticationLoginDTORequest loginDTORequest) {
+        return new ResponseEntity<>(userDetailService.loginUser(loginDTORequest), HttpStatus.OK);
     }
 
 }

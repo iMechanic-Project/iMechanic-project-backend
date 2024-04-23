@@ -16,7 +16,20 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+
+	// https://mvnrepository.com/artifact/com.auth0/java-jwt
+	implementation("com.auth0:java-jwt:4.4.0")
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+	implementation("org.springframework.boot:spring-boot-starter-mail:3.1.5")
+
+	compileOnly("org.projectlombok:lombok")
+	runtimeOnly("com.mysql:mysql-connector-j")
+	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

@@ -1,2 +1,4 @@
-package com.imechanic.backend.project.enumeration;public enum EstadoServicio {
+package com.imechanic.backend.project.enumeration;
+
+public enum EstadoServicio {
 }

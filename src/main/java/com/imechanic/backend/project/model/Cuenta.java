@@ -11,6 +11,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -56,4 +58,7 @@ public class Cuenta {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ManyToMany(targetEntity = Servicio.class, fetch = FetchType.LAZY)
+    private List<Servicio> servicios;
 }

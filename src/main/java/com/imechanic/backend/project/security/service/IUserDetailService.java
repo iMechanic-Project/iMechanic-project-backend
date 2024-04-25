@@ -115,7 +115,7 @@ public class IUserDetailService implements UserDetailsService {
         sendSimpleMessage(
                 cuentaCreated.getCorreoElectronico(),
                 user,
-                "Estimado/a " + cuentaCreated.getNombre() + ",\n\nGracias por registrarte en iMechanic. Por favor, haz clic en el siguiente enlace para confirmar tu cuenta:\n\nhttp://localhost:4200/verificar/" + accessToken + "/" + cuentaCreated.getNombre() + "\n\nSaludos,\nEl equipo de iMechanic");
+                "Estimado/a " + cuentaCreated.getNombre() + ",\n\nGracias por registrarte en iMechanic. Por favor, haz clic en el siguiente enlace para confirmar tu cuenta:\n\nhttp://localhost:4200/verificar/" + accessToken + "\n\nSaludos,\nEl equipo de iMechanic");
 
         return new SignUpDTOResponse("Welcome to iMechanic '".concat(correoElectronico).concat("'"));
     }

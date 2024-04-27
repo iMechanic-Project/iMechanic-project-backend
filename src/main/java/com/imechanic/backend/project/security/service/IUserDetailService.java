@@ -9,7 +9,9 @@ import com.imechanic.backend.project.enumeration.Role;
 import com.imechanic.backend.project.exception.CredencialesIncorrectas;
 import com.imechanic.backend.project.exception.TokenNotFound;
 import com.imechanic.backend.project.model.Cuenta;
+import com.imechanic.backend.project.model.Mecanico;
 import com.imechanic.backend.project.repository.CuentaRepository;
+import com.imechanic.backend.project.repository.MecanicoRepository;
 import com.imechanic.backend.project.security.util.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +19,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -33,6 +36,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class IUserDetailService implements UserDetailsService {
     private final CuentaRepository cuentaRepository;
+    private final MecanicoRepository mecanicoRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
     private final JavaMailSender javaMailSender;
@@ -42,19 +46,24 @@ public class IUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Cuenta cuenta = cuentaRepository.findCuentaByCorreoElectronico(username)
-                .orElseThrow(() -> new UsernameNotFoundException("El usuario" + username + " no existe"));
+        Optional<Cuenta> cuentaOptional = cuentaRepository.findByCorreoElectronico(username);
+        if (cuentaOptional.isPresent()) {
+            Cuenta cuenta = cuentaOptional.get();
+            return buildUser(cuenta.getCorreoElectronico(), cuenta.getContrasenia(), cuenta.getRole(), cuenta.isEnabled(), cuenta.isAccountNoExpired(), cuenta.isCredentialNoExpired(), cuenta.isAccountNoLocked());
+        }
 
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_".concat(cuenta.getRole().name()));
+        Optional<Mecanico> mecanicoOptional = mecanicoRepository.findByCorreoElectronico(username);
+        if (mecanicoOptional.isPresent()) {
+            Mecanico mecanico = mecanicoOptional.get();
+            return buildUser(mecanico.getCorreoElectronico(), mecanico.getContrasenia(), mecanico.getRole(), mecanico.isEnabled(), mecanico.isAccountNoExpired(), mecanico.isCredentialNoExpired(), mecanico.isAccountNoLocked());
+        }
 
-        return new User(
-                cuenta.getCorreoElectronico(),
-                cuenta.getContrasenia(),
-                cuenta.isEnabled(),
-                cuenta.isAccountNoExpired(),
-                cuenta.isCredentialNoExpired(),
-                cuenta.isAccountNoLocked(),
-                Collections.singleton(authority));
+        throw new UsernameNotFoundException("El usuario " + username + " no existe");
+    }
+
+    private UserDetails buildUser(String correoElectronico, String contrasenia, Role role, boolean enabled, boolean accountNoExpired, boolean credentialNoExpired, boolean accountNoLocked) {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role.name());
+        return new User(correoElectronico, contrasenia, enabled, accountNoExpired, accountNoLocked, credentialNoExpired, Collections.singletonList(authority));
     }
 
     public LoginDTOResponse loginUser(AuthenticationLoginDTORequest loginDTORequest) {
@@ -107,9 +116,7 @@ public class IUserDetailService implements UserDetailsService {
 
         Cuenta cuentaCreated = cuentaRepository.save(cuenta);
 
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_".concat(cuenta.getRole().name()));
-
-        Authentication authentication = new UsernamePasswordAuthenticationToken(cuentaCreated.getCorreoElectronico(), cuentaCreated.getContrasenia(), Collections.singleton(authority));
+        Authentication authentication = new UsernamePasswordAuthenticationToken(cuentaCreated.getCorreoElectronico(), cuentaCreated.getContrasenia(), AuthorityUtils.createAuthorityList("ROLE_" + role));
         String accessToken = jwtUtils.createToken(authentication);
 
         sendSimpleMessage(

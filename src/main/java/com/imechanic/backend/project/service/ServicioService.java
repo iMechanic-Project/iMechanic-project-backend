@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +22,7 @@ public class ServicioService {
     private final JwtAuthenticationManager jwtAuthenticationManager;
 
     @Transactional
-    public void agregarServiciosATaller(DecodedJWT decodedJWT, List<Long> serviciosIds) {
+    public List<Servicio> agregarServiciosATaller(DecodedJWT decodedJWT, List<Long> serviciosIds) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
         if (!roleName.equals("TALLER")) {
@@ -46,6 +45,9 @@ public class ServicioService {
             }
         }
 
+        cuenta.setServicios(serviciosActuales);
         cuentaRepository.save(cuenta);
+
+        return serviciosActuales;
     }
 }

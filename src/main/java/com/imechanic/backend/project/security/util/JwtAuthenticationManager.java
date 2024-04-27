@@ -19,6 +19,7 @@ public class JwtAuthenticationManager {
         jwtToken = jwtToken.substring(7);
         return jwtUtils.validateToken(jwtToken);
     }
+
     public String getUserRole(DecodedJWT decodedJWT) {
         String role = jwtUtils.getSpecificClaim(decodedJWT, "role").asString();
         return role.substring(5);

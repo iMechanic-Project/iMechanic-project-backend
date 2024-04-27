@@ -31,4 +31,26 @@ public class HandlerException {
                         .status(HttpStatus.UNAUTHORIZED.value())
                         .build());
     }
+
+    @ExceptionHandler(JwtAuthentication.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ResponseEntity<ErrorDTO> handleJwtAuthentication(JwtAuthentication ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ErrorDTO.builder()
+                        .message(ex.getMessage())
+                        .error("Entidad no encontrada")
+                        .status(HttpStatus.UNAUTHORIZED.value())
+                        .build());
+    }
+
+    @ExceptionHandler(RoleNotAuthorized.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<ErrorDTO> handleRoleNotAuthorized(RoleNotAuthorized ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(ErrorDTO.builder()
+                        .message(ex.getMessage())
+                        .error("Role no autorizado")
+                        .status(HttpStatus.FORBIDDEN.value())
+                        .build());
+    }
 }

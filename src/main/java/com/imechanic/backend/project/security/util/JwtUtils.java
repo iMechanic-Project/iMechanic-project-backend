@@ -26,12 +26,12 @@ public class JwtUtils {
         Algorithm algorithm = Algorithm.HMAC256(this.privateKey);
 
         String correoElectronico = authentication.getPrincipal().toString();
-        String authorities = authentication.getAuthorities().toString();
+        String role = authentication.getAuthorities().iterator().next().getAuthority();
 
         return JWT.create()
                 .withIssuer(this.userGenerator)
                 .withSubject(correoElectronico)
-                .withClaim("authorities", authorities)
+                .withClaim("role", role)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 1800000))
                 .withJWTId(UUID.randomUUID().toString())

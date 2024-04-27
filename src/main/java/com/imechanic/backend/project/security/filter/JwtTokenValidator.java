@@ -31,18 +31,16 @@ public class JwtTokenValidator extends OncePerRequestFilter {
 
         String jwtToken = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (jwtToken != null) { // Bearer tokenKeyProperty
+        if (jwtToken != null && jwtToken.startsWith("Bearer ")) { // Bearer tokenKeyProperty
             jwtToken = jwtToken.substring(7);
 
             DecodedJWT decodedJWT = jwtUtils.validateToken(jwtToken);
 
             String username = jwtUtils.extractUsername(decodedJWT);
-            String stringAuthorities = jwtUtils.getSpecificClaim(decodedJWT, "authorities").asString();
-
-            Collection<? extends GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(stringAuthorities);
+            String role = jwtUtils.getSpecificClaim(decodedJWT, "role").asString();
 
             SecurityContext context = SecurityContextHolder.getContext();
-            Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, AuthorityUtils.createAuthorityList("ROLE_" + role));
             context.setAuthentication(authentication);
             SecurityContextHolder.setContext(context);
         }

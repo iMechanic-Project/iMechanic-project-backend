@@ -4,7 +4,6 @@ import com.imechanic.backend.project.enumeration.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,13 +16,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "cuenta")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "mecanico")
 @Builder
-public class Cuenta {
+public class Mecanico {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "El campo 'nombre' es obligatorio")
+    private String nombre;
 
     @NotBlank(message = "El campo 'correo' es obligatorio")
     @Email(message = "El campo 'correo' debe tener un formato válido")
@@ -33,16 +35,6 @@ public class Cuenta {
     @NotBlank(message = "El campo 'contraseña' es obligatorio")
     @Size(min = 8, message = "El campos 'contraseña' debe tener como minimo 8 caracteres")
     private String contrasenia;
-
-    @NotBlank(message = "El campo 'nombre' es obligatorio")
-    private String nombre;
-
-    @NotBlank(message = "El campo 'telefono' es obligatorio")
-    @Pattern(regexp = "^[0-9]{9}$", message = "El teléfono debe contener solo 9 números")
-    private String telefono;
-
-    @NotBlank(message = "El campo 'direccion' es obligatorio")
-    private String direccion;
 
     @Column(name = "is_enabled")
     private boolean isEnabled;
@@ -59,9 +51,9 @@ public class Cuenta {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @ManyToOne(targetEntity = Cuenta.class)
+    private Cuenta cuenta;
+
     @ManyToMany(targetEntity = Servicio.class, fetch = FetchType.LAZY)
     private List<Servicio> servicios;
-
-    @OneToMany(targetEntity = Mecanico.class, fetch = FetchType.LAZY, mappedBy = "cuenta")
-    private List<Mecanico> mecanicos;
 }

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.Date;
+
 @RestControllerAdvice
 public class HandlerException {
 
@@ -18,6 +20,7 @@ public class HandlerException {
                         .message(ex.getMessage())
                         .error("Token no válido")
                         .status(HttpStatus.NOT_FOUND.value())
+                        .date(new Date())
                         .build());
     }
 
@@ -29,6 +32,7 @@ public class HandlerException {
                         .message(ex.getMessage())
                         .error("Credenciales invalidas")
                         .status(HttpStatus.UNAUTHORIZED.value())
+                        .date(new Date())
                         .build());
     }
 
@@ -40,6 +44,7 @@ public class HandlerException {
                         .message(ex.getMessage())
                         .error("Entidad no encontrada")
                         .status(HttpStatus.UNAUTHORIZED.value())
+                        .date(new Date())
                         .build());
     }
 
@@ -51,6 +56,7 @@ public class HandlerException {
                         .message(ex.getMessage())
                         .error("Role no autorizado")
                         .status(HttpStatus.FORBIDDEN.value())
+                        .date(new Date())
                         .build());
     }
 }

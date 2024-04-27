@@ -1,5 +1,6 @@
 package com.imechanic.backend.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -24,5 +25,6 @@ public class Paso {
     private boolean completado;
 
     @ManyToOne(targetEntity = Servicio.class)
+    @JsonIgnore
     private Servicio servicio;
 }

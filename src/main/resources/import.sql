@@ -119,3 +119,108 @@ INSERT INTO paso (nombre, orden, completado, servicio_id) VALUES ('Evaluación d
 INSERT INTO paso (nombre, orden, completado, servicio_id) VALUES ('Enderezado de chasis si es necesario.', 2, 0, 20);
 INSERT INTO paso (nombre, orden, completado, servicio_id) VALUES ('Reparación de abolladuras y rasguños.', 3, 0, 20);
 INSERT INTO paso (nombre, orden, completado, servicio_id) VALUES ('Pintura y pulido final.', 4, 0, 20);
+
+-- VEHICULOS
+-- Marcas
+INSERT INTO marca (nombre) VALUES ('Toyota');
+INSERT INTO marca (nombre) VALUES ('Hyundai');
+INSERT INTO marca (nombre) VALUES ('Kia');
+INSERT INTO marca (nombre) VALUES ('Chevrolet');
+INSERT INTO marca (nombre) VALUES ('Nissan');
+INSERT INTO marca (nombre) VALUES ('Volkswagen');
+INSERT INTO marca (nombre) VALUES ('Ford');
+INSERT INTO marca (nombre) VALUES ('Suzuki');
+INSERT INTO marca (nombre) VALUES ('Honda');
+INSERT INTO marca (nombre) VALUES ('Mitsubishi');
+INSERT INTO marca (nombre) VALUES ('Mercedes-Benz');
+INSERT INTO marca (nombre) VALUES ('BMW');
+INSERT INTO marca (nombre) VALUES ('Mazda');
+INSERT INTO marca (nombre) VALUES ('Audi');
+INSERT INTO marca (nombre) VALUES ('Renault');
+INSERT INTO marca (nombre) VALUES ('Peugeot');
+INSERT INTO marca (nombre) VALUES ('Subaru');
+INSERT INTO marca (nombre) VALUES ('Fiat');
+INSERT INTO marca (nombre) VALUES ('Chery');
+INSERT INTO marca (nombre) VALUES ('Geely');
+
+
+-- Modelos
+INSERT INTO modelo (nombre, marca_id) VALUES ('Corolla', 1);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Yaris', 1);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Hilux', 1);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Tucson', 2);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Accent', 2);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Creta', 2);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Rio', 3);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Sportage', 3);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Cerato', 3);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Spark', 4);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Sail', 4);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Tracker', 4);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('March', 5);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Versa', 5);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Kicks', 5);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Gol', 6);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Polo', 6);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Amarok', 6);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Ecosport', 7);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Ranger', 7);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Fiesta', 7);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Swift', 8);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Jimny', 8);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Vitara', 8);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Civic', 9);
+INSERT INTO modelo (nombre, marca_id) VALUES ('HR-V', 9);
+INSERT INTO modelo (nombre, marca_id) VALUES ('CR-V', 9);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('L200', 10);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Outlander', 10);
+INSERT INTO modelo (nombre, marca_id) VALUES ('ASX', 10);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Clase A', 11);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Clase C', 11);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Clase GLA', 11);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Serie 1', 12);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Serie 3', 12);
+INSERT INTO modelo (nombre, marca_id) VALUES ('X1', 12);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Mazda3', 13);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Mazda2', 13);
+INSERT INTO modelo (nombre, marca_id) VALUES ('CX-5', 13);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('A3', 14);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Q3', 14);
+INSERT INTO modelo (nombre, marca_id) VALUES ('A4', 14);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Kwid', 15);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Logan', 15);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Duster', 15);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('208', 16);
+INSERT INTO modelo (nombre, marca_id) VALUES ('2008', 16);
+INSERT INTO modelo (nombre, marca_id) VALUES ('3008', 16);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Forester', 17);
+INSERT INTO modelo (nombre, marca_id) VALUES ('XV', 17);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Impreza', 17);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Argo', 18);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Cronos', 18);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Toro', 18);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('Tiggo 2', 19);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Tiggo 3', 19);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Tiggo 5', 19);
+
+INSERT INTO modelo (nombre, marca_id) VALUES ('CK', 20);
+INSERT INTO modelo (nombre, marca_id) VALUES ('Emgrand 7', 20);
+INSERT INTO modelo (nombre, marca_id) VALUES ('X7 Sport', 20);

@@ -35,6 +35,8 @@ public class OrdenTrabajo {
     @ManyToOne(targetEntity = Cuenta.class)
     private Cuenta cuenta;
 
+    private String nombreCliente;
+
     @PrePersist
     protected void addOnAttributes() {
         fechaRegistro = new Date();

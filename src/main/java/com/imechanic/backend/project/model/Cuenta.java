@@ -64,4 +64,10 @@ public class Cuenta {
 
     @OneToMany(targetEntity = Mecanico.class, fetch = FetchType.LAZY, mappedBy = "cuenta")
     private List<Mecanico> mecanicos;
+
+    @OneToMany(targetEntity = Vehiculo.class, fetch = FetchType.LAZY, mappedBy = "cuenta")
+    private List<Vehiculo> vehiculos;
+
+    @OneToMany(targetEntity = OrdenTrabajo.class, fetch = FetchType.LAZY, mappedBy = "cuenta")
+    private List<OrdenTrabajo> ordenTrabajos;
 }

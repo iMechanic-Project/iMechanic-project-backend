@@ -19,6 +19,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -80,7 +81,11 @@ public class IUserDetailService implements UserDetailsService {
 
         String accessToken = jwtUtils.createToken(authentication);
 
-        return new LoginDTOResponse(correoElectronico, "User logged successfully", accessToken, true);
+        return new LoginDTOResponse("User logged successfully", accessToken,
+                authentication.getAuthorities().stream()
+                        .findFirst()
+                        .map(GrantedAuthority::getAuthority)
+                        .orElse(""));
     }
 
     private Authentication authenticate(String correoElectronico, String contrasenia) {

@@ -16,8 +16,10 @@ import com.imechanic.backend.project.repository.VehiculoRepository;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,14 +30,37 @@ public class VehiculoService {
     private final CuentaRepository cuentaRepository;
     private final JwtAuthenticationManager jwtAuthenticationManager;
 
+    @Transactional(readOnly = true)
+    public List<VehiculoDTOResponse> obtenerMisVehiculos(DecodedJWT decodedJWT) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("CLIENTE")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'CLIENTE'");
+        }
+
+        String correoElectronico = decodedJWT.getSubject();
+
+        Cuenta cuenta = cuentaRepository.findByCorreoElectronico(correoElectronico)
+                .orElseThrow(() -> new EntidadNoEncontrada("No se encontró la cuenta del taller con correo electrónico: " + correoElectronico));
+
+        List<Vehiculo> vehiculos = cuenta.getVehiculos();
+
+        return vehiculos.stream()
+                .map(vehiculo -> new VehiculoDTOResponse(vehiculo.getPlaca(), vehiculo.getMarca().getNombre(), vehiculo.getModelo().getNombre(), vehiculo.getCategoria().name()))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public List<Marca> obtenerTodasLasMarcas() {
         return marcaRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public List<Modelo> obtenerTodosLosModelosDeLaMarca(Long marcaId) {
         return modeloRepository.findByMarcaId(marcaId);
     }
 
+    @Transactional
     public VehiculoDTOResponse crearVehiculo(VehiculoDTORequest vehiculoDTORequest, DecodedJWT decodedJWT) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 

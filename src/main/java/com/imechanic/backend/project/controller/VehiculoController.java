@@ -21,6 +21,15 @@ public class VehiculoController {
     private final VehiculoService vehiculoService;
     private final JwtAuthenticationManager jwtAuthenticationManager;
 
+    @GetMapping("/all")
+    public ResponseEntity<List<VehiculoDTOResponse>> getAllVehicles(HttpServletRequest request) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+
+        List<VehiculoDTOResponse> vehiculos = vehiculoService.obtenerMisVehiculos(decodedJWT);
+        return ResponseEntity.ok(vehiculos);
+    }
+
+
     @GetMapping("/marcas")
     public ResponseEntity<List<Marca>> todasLasMarcas() {
         return ResponseEntity.ok(vehiculoService.obtenerTodasLasMarcas());

@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrdenTrabajoDTOResponse {
-    private String nombre;
+    private String correoTaller;
+    private String nombreCliente;
     private String direccion;
     private String telefono;
     private String placa;
@@ -16,4 +17,3 @@ public class OrdenTrabajoDTOResponse {
     private String modelo;
     private String categoria;
 }
-

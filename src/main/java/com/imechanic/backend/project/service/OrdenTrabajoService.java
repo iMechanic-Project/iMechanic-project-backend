@@ -1,22 +1,18 @@
 package com.imechanic.backend.project.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTOList;
-import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTORequest;
-import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTOResponse;
+import com.imechanic.backend.project.controller.dto.*;
+import com.imechanic.backend.project.enumeration.EstadoOrden;
 import com.imechanic.backend.project.exception.EntidadNoEncontrada;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
-import com.imechanic.backend.project.model.Cuenta;
-import com.imechanic.backend.project.model.OrdenTrabajo;
-import com.imechanic.backend.project.model.Vehiculo;
-import com.imechanic.backend.project.repository.CuentaRepository;
-import com.imechanic.backend.project.repository.OrdenTrabajoRepository;
-import com.imechanic.backend.project.repository.VehiculoRepository;
+import com.imechanic.backend.project.model.*;
+import com.imechanic.backend.project.repository.*;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,12 +22,14 @@ public class OrdenTrabajoService {
     private final OrdenTrabajoRepository ordenTrabajoRepository;
     private final CuentaRepository cuentaRepository;
     private final VehiculoRepository vehiculoRepository;
+    private final ServicioRepository servicioRepository;
+    private final MecanicoRepository mecanicoRepository;
     private final JwtAuthenticationManager jwtAuthenticationManager;
 
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
-    public OrdenTrabajoDTOResponse crearOrden(DecodedJWT decodedJWT, OrdenTrabajoDTORequest ordenTrabajoDTORequest) {
+    public OrdenTrabajoDTOResponse buscarPorPlaca(DecodedJWT decodedJWT, OrdenTrabajoDTORequest ordenTrabajoDTORequest) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
         if (!roleName.equals("TALLER")) {
@@ -46,15 +44,57 @@ public class OrdenTrabajoService {
         Vehiculo vehiculo = vehiculoRepository.findByPlaca(ordenTrabajoDTORequest.getPlaca())
                 .orElseThrow(() -> new EntidadNoEncontrada("No se encontró el vehiculo con placa: " + ordenTrabajoDTORequest.getPlaca()));
 
+        return new OrdenTrabajoDTOResponse(cuentaTaller.getCorreoElectronico(), vehiculo.getCuenta().getNombre(), vehiculo.getCuenta().getDireccion(), vehiculo.getCuenta().getTelefono(), vehiculo.getPlaca(), vehiculo.getMarca().getNombre(), vehiculo.getModelo().getNombre(), vehiculo.getCategoria().toString());
+    }
+
+    public OrdenTrabajoDTOResponse crearOrden(DecodedJWT decodedJWT, CreateOrdenDTORequest createOrdenDTORequest) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("TALLER")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'TALLER'");
+        }
+
+        String correoElectronico = decodedJWT.getSubject();
+
+        Cuenta cuentaTaller = cuentaRepository.findByCorreoElectronico(correoElectronico)
+                .orElseThrow(() -> new EntidadNoEncontrada("No se encontró la cuenta del cliente con correo electronico " + correoElectronico));
+
         OrdenTrabajo ordenTrabajo = OrdenTrabajo.builder()
-                .placa(ordenTrabajoDTORequest.getPlaca())
+                .nombreCliente(createOrdenDTORequest.getNombreCliente())
+                .direccionCliente(createOrdenDTORequest.getDireccion())
+                .telefonoCliente(createOrdenDTORequest.getTelefono())
+                .placa(createOrdenDTORequest.getPlaca())
+                .marca(createOrdenDTORequest.getMarca())
+                .modelo(createOrdenDTORequest.getModelo())
+                .categoria(createOrdenDTORequest.getCategoria())
+                .estado(EstadoOrden.EN_ESPERA)
                 .cuenta(cuentaTaller)
-                .nombreCliente(vehiculo.getCuenta().getNombre())
+                .serviciosMecanicos(new ArrayList<>())
                 .build();
 
         ordenTrabajoRepository.save(ordenTrabajo);
 
-        return new OrdenTrabajoDTOResponse(cuentaTaller.getNombre(), cuentaTaller.getDireccion(), cuentaTaller.getTelefono(), vehiculo.getPlaca(), vehiculo.getMarca().getNombre(), vehiculo.getModelo().getNombre(), vehiculo.getCategoria().toString());
+        for (ServicioMecanicoDTO servicioMecanicoDTO : createOrdenDTORequest.getServiciosMecanicos()) {
+            Servicio servicio = servicioRepository.findById(servicioMecanicoDTO.getServicioId())
+                    .orElseThrow(() -> new EntidadNoEncontrada("No se encontró el servicio con id: " + servicioMecanicoDTO.getServicioId()));
+            Mecanico mecanico = mecanicoRepository.findById(servicioMecanicoDTO.getMecanicoId())
+                    .orElseThrow(() -> new EntidadNoEncontrada("No se encontró el mecánico con id: " + servicioMecanicoDTO.getMecanicoId()));
+
+            ServicioMecanico servicioMecanico = new ServicioMecanico(servicio, mecanico);
+            servicioMecanico.setOrdenTrabajo(ordenTrabajo);
+            ordenTrabajo.getServiciosMecanicos().add(servicioMecanico);
+        }
+
+        ordenTrabajoRepository.save(ordenTrabajo);
+
+        return new OrdenTrabajoDTOResponse(cuentaTaller.getCorreoElectronico(),
+                ordenTrabajo.getNombreCliente(),
+                ordenTrabajo.getDireccionCliente(),
+                ordenTrabajo.getTelefonoCliente(),
+                ordenTrabajo.getPlaca(),
+                ordenTrabajo.getMarca(),
+                ordenTrabajo.getModelo(),
+                ordenTrabajo.getCategoria());
     }
 
     public List<OrdenTrabajoDTOList> obtenerTodasLasOrdenesDeTaller(DecodedJWT decodedJWT) {

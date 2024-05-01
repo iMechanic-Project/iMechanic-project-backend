@@ -4,11 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrdenTrabajoDTOResponse {
-    private String correoTaller;
+public class CreateOrdenDTORequest {
     private String nombreCliente;
     private String direccion;
     private String telefono;
@@ -16,4 +17,5 @@ public class OrdenTrabajoDTOResponse {
     private String marca;
     private String modelo;
     private String categoria;
+    private List<ServicioMecanicoDTO> serviciosMecanicos;
 }

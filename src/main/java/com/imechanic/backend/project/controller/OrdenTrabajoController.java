@@ -1,6 +1,7 @@
 package com.imechanic.backend.project.controller;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.imechanic.backend.project.controller.dto.CreateOrdenDTORequest;
 import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTOList;
 import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTORequest;
 import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTOResponse;
@@ -20,11 +21,18 @@ public class OrdenTrabajoController {
     private final OrdenTrabajoService ordenTrabajoService;
     private final JwtAuthenticationManager jwtAuthenticationManager;
 
-    @PostMapping("/crear")
-    public ResponseEntity<OrdenTrabajoDTOResponse> crearOrden(@RequestBody OrdenTrabajoDTORequest ordenTrabajoDTORequest, HttpServletRequest request) {
+    @PostMapping("/placa")
+    public ResponseEntity<OrdenTrabajoDTOResponse> getDataByPlaca(@RequestBody OrdenTrabajoDTORequest ordenTrabajoDTORequest, HttpServletRequest request) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
 
-        return ResponseEntity.ok(ordenTrabajoService.crearOrden(decodedJWT, ordenTrabajoDTORequest));
+        return ResponseEntity.ok(ordenTrabajoService.buscarPorPlaca(decodedJWT, ordenTrabajoDTORequest));
+    }
+
+    @PostMapping("/crear")
+    public ResponseEntity<OrdenTrabajoDTOResponse> crearOrden(@RequestBody CreateOrdenDTORequest createOrdenDTORequest, HttpServletRequest request) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+
+        return ResponseEntity.ok(ordenTrabajoService.crearOrden(decodedJWT, createOrdenDTORequest));
     }
 
     @GetMapping("/todas")

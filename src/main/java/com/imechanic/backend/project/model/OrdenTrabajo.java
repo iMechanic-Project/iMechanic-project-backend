@@ -7,8 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,9 +23,23 @@ public class OrdenTrabajo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "codigo_orden", unique = true)
-    private String codigoOrden;
+    @Column(name = "nombre_cliente")
+    private String nombreCliente;
+
+    @Column(name = "direccion_cliente")
+    private String direccionCliente;
+
+    @Column(name = "telefono_cliente")
+    private String telefonoCliente;
+
+    @Column(unique = true)
     private String placa;
+
+    private String marca;
+
+    private String modelo;
+
+    private String categoria;
 
     @Enumerated(EnumType.STRING)
     private EstadoOrden estado;
@@ -35,15 +50,11 @@ public class OrdenTrabajo {
     @ManyToOne(targetEntity = Cuenta.class)
     private Cuenta cuenta;
 
-    private String nombreCliente;
+    @OneToMany(mappedBy = "ordenTrabajo", cascade = CascadeType.ALL)
+    private List<ServicioMecanico> serviciosMecanicos = new ArrayList<>();
 
     @PrePersist
     protected void addOnAttributes() {
         fechaRegistro = new Date();
-        UUID uuid = UUID.randomUUID();
-        String codigoOrden = uuid.toString().toUpperCase().replaceAll("-", "").substring(0, 8);
-        this.codigoOrden = codigoOrden.substring(0, 4) + "-" + codigoOrden.substring(4,8);
-        this.estado = EstadoOrden.EN_ESPERA;
     }
-
 }

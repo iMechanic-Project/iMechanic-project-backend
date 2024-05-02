@@ -40,12 +40,12 @@ public class VehiculoController {
 
     @GetMapping("/marcas")
     public ResponseEntity<List<Marca>> todasLasMarcas() {
-        return ResponseEntity.ok(vehiculoService.obtenerTodas());
+        return ResponseEntity.ok(vehiculoService.obtenerTodasLasMarcas());
     }
 
     @GetMapping("/modelos/{marcaId}")
     public ResponseEntity<List<Modelo>> todosLosModelos(@PathVariable Long marcaId) {
-        return ResponseEntity.ok(vehiculoService.obtenerTodss(marcaId));
+        return ResponseEntity.ok(vehiculoService.obtenerTodosLosModelos(marcaId));
     }
 
     @PostMapping("/crear")

@@ -104,6 +104,7 @@ public class MecanicoService {
         return new MecanicoDTOResponse("Mecanico '" + mecanicoDTORequest.getNombre() + "' creado con exito");
     }
 
+    @Transactional(readOnly = true)
     public List<MecanicoDTOList> getAllMechanicsByService(DecodedJWT decodedJWT, Long serviceId) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 

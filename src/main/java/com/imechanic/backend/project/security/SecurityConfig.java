@@ -50,7 +50,7 @@ public class SecurityConfig {
                 new AntPathRequestMatcher("/servicio/**"),
                 new AntPathRequestMatcher("/vehiculo/**"),
                 new AntPathRequestMatcher("/mecanico/**"),
-                new AntPathRequestMatcher("/orden-trabajo/**")
+                new AntPathRequestMatcher("/orden/**")
         );
     }
 }

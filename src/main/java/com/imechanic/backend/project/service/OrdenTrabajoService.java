@@ -29,25 +29,7 @@ public class OrdenTrabajoService {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
-    public OrdenTrabajoDTOResponse buscarPorPlaca(DecodedJWT decodedJWT, OrdenTrabajoDTORequest ordenTrabajoDTORequest) {
-        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
-
-        if (!roleName.equals("TALLER")) {
-            throw new RoleNotAuthorized("El rol del usuario no es 'TALLER'");
-        }
-
-        String correoElectronico = decodedJWT.getSubject();
-
-        Cuenta cuentaTaller = cuentaRepository.findByCorreoElectronico(correoElectronico)
-                .orElseThrow(() -> new EntidadNoEncontrada("No se encontró la cuenta del cliente con correo electronico " + correoElectronico));
-
-        Vehiculo vehiculo = vehiculoRepository.findByPlaca(ordenTrabajoDTORequest.getPlaca())
-                .orElseThrow(() -> new EntidadNoEncontrada("No se encontró el vehiculo con placa: " + ordenTrabajoDTORequest.getPlaca()));
-
-        return new OrdenTrabajoDTOResponse(cuentaTaller.getCorreoElectronico(), vehiculo.getCuenta().getNombre(), vehiculo.getCuenta().getDireccion(), vehiculo.getCuenta().getTelefono(), vehiculo.getPlaca(), vehiculo.getMarca().getNombre(), vehiculo.getModelo().getNombre(), vehiculo.getCategoria().toString());
-    }
-
-    public OrdenTrabajoDTOResponse crearOrden(DecodedJWT decodedJWT, CreateOrdenDTORequest createOrdenDTORequest) {
+    public VehiculoSearchDTOResponse crearOrden(DecodedJWT decodedJWT, CreateOrdenDTORequest createOrdenDTORequest) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
         if (!roleName.equals("TALLER")) {
@@ -87,7 +69,7 @@ public class OrdenTrabajoService {
 
         ordenTrabajoRepository.save(ordenTrabajo);
 
-        return new OrdenTrabajoDTOResponse(cuentaTaller.getCorreoElectronico(),
+        return new VehiculoSearchDTOResponse(cuentaTaller.getCorreoElectronico(),
                 ordenTrabajo.getNombreCliente(),
                 ordenTrabajo.getDireccionCliente(),
                 ordenTrabajo.getTelefonoCliente(),
@@ -101,12 +83,12 @@ public class OrdenTrabajoService {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
         if (!roleName.equals("TALLER")) {
-            throw new RoleNotAuthorized("El rol del usuario no es 'TALLER'");
+            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO'");
         }
 
         String correoElectronico = decodedJWT.getSubject();
 
-        List<OrdenTrabajo> ordenTrabajos = ordenTrabajoRepository.findAllByCuentaCorreoElectronico(correoElectronico);
+        List<OrdenTrabajo> ordenTrabajos = ordenTrabajoRepository.findAllByCuentaCorreoElectronicoOrderByFechaRegistroDesc(correoElectronico);
 
         return ordenTrabajos.stream()
                 .map(orden -> new OrdenTrabajoDTOList(

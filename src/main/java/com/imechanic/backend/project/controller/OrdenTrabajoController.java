@@ -3,8 +3,7 @@ package com.imechanic.backend.project.controller;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.imechanic.backend.project.controller.dto.CreateOrdenDTORequest;
 import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTOList;
-import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTORequest;
-import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTOResponse;
+import com.imechanic.backend.project.controller.dto.VehiculoSearchDTOResponse;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import com.imechanic.backend.project.service.OrdenTrabajoService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,21 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/orden-trabajo")
+@RequestMapping("/orden")
 @RequiredArgsConstructor
 public class OrdenTrabajoController {
     private final OrdenTrabajoService ordenTrabajoService;
     private final JwtAuthenticationManager jwtAuthenticationManager;
 
-    @PostMapping("/placa")
-    public ResponseEntity<OrdenTrabajoDTOResponse> getDataByPlaca(@RequestBody OrdenTrabajoDTORequest ordenTrabajoDTORequest, HttpServletRequest request) {
-        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
-
-        return ResponseEntity.ok(ordenTrabajoService.buscarPorPlaca(decodedJWT, ordenTrabajoDTORequest));
-    }
-
     @PostMapping("/crear")
-    public ResponseEntity<OrdenTrabajoDTOResponse> crearOrden(@RequestBody CreateOrdenDTORequest createOrdenDTORequest, HttpServletRequest request) {
+    public ResponseEntity<VehiculoSearchDTOResponse> crearOrden(@RequestBody CreateOrdenDTORequest createOrdenDTORequest, HttpServletRequest request) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
 
         return ResponseEntity.ok(ordenTrabajoService.crearOrden(decodedJWT, createOrdenDTORequest));

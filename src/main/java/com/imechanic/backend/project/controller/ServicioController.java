@@ -4,6 +4,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.imechanic.backend.project.controller.dto.ServicioDTO;
 import com.imechanic.backend.project.enumeration.TipoServicio;
 import com.imechanic.backend.project.exception.EntidadNoEncontrada;
+import com.imechanic.backend.project.model.Servicio;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import com.imechanic.backend.project.service.ServicioService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -54,7 +55,7 @@ public class ServicioController {
     }
 
     @PutMapping("/add")
-    public ResponseEntity<?> agregarServiciosATaller(@RequestBody List<Long> serviciosIds, HttpServletRequest request) {
+    public ResponseEntity<List<Servicio>> agregarServiciosATaller(@RequestBody List<Long> serviciosIds, HttpServletRequest request) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
 
         try {
@@ -62,8 +63,6 @@ public class ServicioController {
             return ResponseEntity.ok().build();
         } catch (EntidadNoEncontrada e) {
             return ResponseEntity.notFound().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }

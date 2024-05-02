@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface OrdenTrabajoRepository extends JpaRepository<OrdenTrabajo, Long> {
-    List<OrdenTrabajo> findAllByCuentaCorreoElectronico(String correoElectronico);
+    List<OrdenTrabajo> findAllByCuentaCorreoElectronicoOrderByFechaRegistroDesc(String correoElectronico);
 }

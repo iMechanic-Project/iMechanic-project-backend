@@ -1,10 +1,7 @@
 package com.imechanic.backend.project.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.imechanic.backend.project.controller.dto.MecanicoDTO;
-import com.imechanic.backend.project.controller.dto.MecanicoDTORequest;
-import com.imechanic.backend.project.controller.dto.MecanicoDTOResponse;
-import com.imechanic.backend.project.controller.dto.ServicioDTO;
+import com.imechanic.backend.project.controller.dto.*;
 import com.imechanic.backend.project.enumeration.Role;
 import com.imechanic.backend.project.exception.EntidadNoEncontrada;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
@@ -36,6 +33,7 @@ public class MecanicoService {
     private final CuentaRepository cuentaRepository;
     private final JwtAuthenticationManager jwtAuthenticationManager;
     private final JavaMailSender javaMailSender;
+
     @Value("${spring.email.sender.user}")
     private String user;
 
@@ -106,7 +104,20 @@ public class MecanicoService {
         return new MecanicoDTOResponse("Mecanico '" + mecanicoDTORequest.getNombre() + "' creado con exito");
     }
 
-    public void sendSimpleMessage(String to, String subject, String text) {
+    public List<MecanicoDTOList> getAllMechanicsByService(DecodedJWT decodedJWT, Long serviceId) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("TALLER")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'TALLER'");
+        }
+
+        return mecanicoRepository.findAllByServiciosId(serviceId)
+                .stream()
+                .map(mecanico -> new MecanicoDTOList(mecanico.getId(), mecanico.getNombre()))
+                .collect(Collectors.toList());
+    }
+
+    private void sendSimpleMessage(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(user);
         message.setTo(to);
@@ -114,5 +125,4 @@ public class MecanicoService {
         message.setText(text);
         javaMailSender.send(message);
     }
-
 }

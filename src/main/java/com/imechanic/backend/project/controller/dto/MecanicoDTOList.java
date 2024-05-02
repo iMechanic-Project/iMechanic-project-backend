@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrdenTrabajoDTORequest {
-    private String placa;
+public class MecanicoDTOList {
+    private Long id;
+    private String nombre;
 }
+

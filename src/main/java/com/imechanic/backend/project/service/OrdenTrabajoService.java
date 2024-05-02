@@ -10,6 +10,7 @@ import com.imechanic.backend.project.repository.*;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,10 +26,10 @@ public class OrdenTrabajoService {
     private final ServicioRepository servicioRepository;
     private final MecanicoRepository mecanicoRepository;
     private final JwtAuthenticationManager jwtAuthenticationManager;
-
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
+    @Transactional
     public VehiculoSearchDTOResponse crearOrden(DecodedJWT decodedJWT, CreateOrdenDTORequest createOrdenDTORequest) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
@@ -79,6 +80,7 @@ public class OrdenTrabajoService {
                 ordenTrabajo.getCategoria());
     }
 
+    @Transactional(readOnly = true)
     public List<OrdenTrabajoDTOList> obtenerTodasLasOrdenesDeTaller(DecodedJWT decodedJWT) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
@@ -100,4 +102,22 @@ public class OrdenTrabajoService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public String iniciarOrden(DecodedJWT decodedJWT, Long orderId) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("MECANICO") && !roleName.equals("TALLER")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO' ni 'TALLER'");
+        }
+
+        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(orderId)
+                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + orderId + " no encontrada"));
+
+        ordenTrabajo.setEstado(EstadoOrden.EN_PROCESO);
+        ordenTrabajoRepository.save(ordenTrabajo);
+
+        return "Estado actualizado: " + ordenTrabajo.getEstado();
+    }
+
 }

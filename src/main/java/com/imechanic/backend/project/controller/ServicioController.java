@@ -59,8 +59,7 @@ public class ServicioController {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
 
         try {
-            servicioService.agregarServiciosATaller(decodedJWT, serviciosIds);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(servicioService.agregarServiciosATaller(decodedJWT, serviciosIds));
         } catch (EntidadNoEncontrada e) {
             return ResponseEntity.notFound().build();
         }

@@ -32,6 +32,7 @@ public class VehiculoService {
     private final CuentaRepository cuentaRepository;
     private final JwtAuthenticationManager jwtAuthenticationManager;
 
+    @Transactional(readOnly = true)
     public VehiculoSearchDTOResponse buscarPorPlaca(DecodedJWT decodedJWT, VehiculoSearchDTORequest vehiculoSearchDTORequest) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
@@ -50,6 +51,7 @@ public class VehiculoService {
         return new VehiculoSearchDTOResponse(cuentaTaller.getCorreoElectronico(), vehiculo.getCuenta().getNombre(), vehiculo.getCuenta().getDireccion(), vehiculo.getCuenta().getTelefono(), vehiculo.getPlaca(), vehiculo.getMarca().getNombre(), vehiculo.getModelo().getNombre(), vehiculo.getCategoria().toString());
     }
 
+    @Transactional(readOnly = true)
     public List<VehiculoDTOResponse> obtenerMisVehiculos(DecodedJWT decodedJWT) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
@@ -69,14 +71,17 @@ public class VehiculoService {
                 .collect(Collectors.toList());
     }
 
-    public List<Marca> obtenerTodas() {
+    @Transactional(readOnly = true)
+    public List<Marca> obtenerTodasLasMarcas() {
         return marcaRepository.findAll();
     }
 
-    public List<Modelo> obtenerTodss(Long marcaId) {
+    @Transactional(readOnly = true)
+    public List<Modelo> obtenerTodosLosModelos(Long marcaId) {
         return modeloRepository.findByMarcaId(marcaId);
     }
 
+    @Transactional
     public VehiculoDTOResponse crearVehiculo(VehiculoDTORequest vehiculoDTORequest, DecodedJWT decodedJWT) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 

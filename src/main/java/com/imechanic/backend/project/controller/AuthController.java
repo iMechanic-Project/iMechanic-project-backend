@@ -22,14 +22,13 @@ public class AuthController {
         return new ResponseEntity<>(userDetailService.createUser(signUpDTORequest), HttpStatus.CREATED);
     }
 
-    @GetMapping("/confirmation/{token}")
-    public String confirmarCuenta(@PathVariable String token) {
-        return userDetailService.confirmarCuenta(token);
-    }
-
     @PostMapping("/login")
     public ResponseEntity<LoginDTOResponse> login(@Valid @RequestBody AuthenticationLoginDTORequest loginDTORequest) {
         return new ResponseEntity<>(userDetailService.loginUser(loginDTORequest), HttpStatus.OK);
     }
 
+    @GetMapping("/confirmation/{token}")
+    public String confirmarCuenta(@PathVariable String token) {
+        return userDetailService.confirmarCuenta(token);
+    }
 }

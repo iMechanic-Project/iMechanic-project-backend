@@ -32,7 +32,6 @@ public class OrdenTrabajo {
     @Column(name = "telefono_cliente")
     private String telefonoCliente;
 
-    @Column(unique = true)
     private String placa;
 
     private String marca;

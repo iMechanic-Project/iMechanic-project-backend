@@ -3,6 +3,8 @@ package com.imechanic.backend.project.controller;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.imechanic.backend.project.controller.dto.VehiculoDTORequest;
 import com.imechanic.backend.project.controller.dto.VehiculoDTOResponse;
+import com.imechanic.backend.project.controller.dto.VehiculoSearchDTORequest;
+import com.imechanic.backend.project.controller.dto.VehiculoSearchDTOResponse;
 import com.imechanic.backend.project.model.Marca;
 import com.imechanic.backend.project.model.Modelo;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
@@ -21,6 +23,13 @@ public class VehiculoController {
     private final VehiculoService vehiculoService;
     private final JwtAuthenticationManager jwtAuthenticationManager;
 
+    @PostMapping("/placa")
+    public ResponseEntity<VehiculoSearchDTOResponse> getDataByPlaca(@RequestBody VehiculoSearchDTORequest vehiculoSearchDTORequest, HttpServletRequest request) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+
+        return ResponseEntity.ok(vehiculoService.buscarPorPlaca(decodedJWT, vehiculoSearchDTORequest));
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<VehiculoDTOResponse>> getAllVehicles(HttpServletRequest request) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
@@ -29,15 +38,14 @@ public class VehiculoController {
         return ResponseEntity.ok(vehiculos);
     }
 
-
     @GetMapping("/marcas")
     public ResponseEntity<List<Marca>> todasLasMarcas() {
-        return ResponseEntity.ok(vehiculoService.obtenerTodasLasMarcas());
+        return ResponseEntity.ok(vehiculoService.obtenerTodas());
     }
 
     @GetMapping("/modelos/{marcaId}")
     public ResponseEntity<List<Modelo>> todosLosModelos(@PathVariable Long marcaId) {
-        return ResponseEntity.ok(vehiculoService.obtenerTodosLosModelosDeLaMarca(marcaId));
+        return ResponseEntity.ok(vehiculoService.obtenerTodss(marcaId));
     }
 
     @PostMapping("/crear")

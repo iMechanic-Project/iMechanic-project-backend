@@ -2,6 +2,7 @@ package com.imechanic.backend.project.controller;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.imechanic.backend.project.controller.dto.MecanicoDTO;
+import com.imechanic.backend.project.controller.dto.MecanicoDTOList;
 import com.imechanic.backend.project.controller.dto.MecanicoDTORequest;
 import com.imechanic.backend.project.controller.dto.MecanicoDTOResponse;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
@@ -33,6 +34,14 @@ public class MecanicoController {
         } catch (RoleNotAuthorized e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
+
+    @GetMapping("/service/{serviceId}")
+    public ResponseEntity<List<MecanicoDTOList>> getMechanicsByService(HttpServletRequest request, @PathVariable Long serviceId) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+
+        List<MecanicoDTOList> mechanics = mecanicoService.getAllMechanicsByService(decodedJWT, serviceId);
+        return ResponseEntity.ok(mechanics);
     }
 
     @PostMapping("/crear")

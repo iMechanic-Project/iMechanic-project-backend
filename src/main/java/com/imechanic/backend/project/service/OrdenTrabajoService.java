@@ -42,7 +42,11 @@ public class OrdenTrabajoService {
         Cuenta cuentaTaller = cuentaRepository.findByCorreoElectronico(correoElectronico)
                 .orElseThrow(() -> new EntidadNoEncontrada("No se encontró la cuenta del cliente con correo electronico " + correoElectronico));
 
+        Vehiculo vehiculo = vehiculoRepository.findByPlaca(createOrdenDTORequest.getPlaca())
+                .orElseThrow(() -> new EntidadNoEncontrada("Vehiculo con placa: " + createOrdenDTORequest.getPlaca() + " no encontrado"));
+
         OrdenTrabajo ordenTrabajo = OrdenTrabajo.builder()
+                .correoCliente(vehiculo.getCuenta().getCorreoElectronico())
                 .nombreCliente(createOrdenDTORequest.getNombreCliente())
                 .direccionCliente(createOrdenDTORequest.getDireccion())
                 .telefonoCliente(createOrdenDTORequest.getTelefono())
@@ -70,7 +74,7 @@ public class OrdenTrabajoService {
 
         ordenTrabajoRepository.save(ordenTrabajo);
 
-        return new VehiculoSearchDTOResponse(cuentaTaller.getCorreoElectronico(),
+        return new VehiculoSearchDTOResponse(
                 ordenTrabajo.getNombreCliente(),
                 ordenTrabajo.getDireccionCliente(),
                 ordenTrabajo.getTelefonoCliente(),
@@ -94,6 +98,7 @@ public class OrdenTrabajoService {
 
         return ordenTrabajos.stream()
                 .map(orden -> new OrdenTrabajoDTOList(
+                        orden.getId(),
                         orden.getPlaca(),
                         orden.getNombreCliente(),
                         dateFormat.format(orden.getFechaRegistro()), // Formatea la fecha

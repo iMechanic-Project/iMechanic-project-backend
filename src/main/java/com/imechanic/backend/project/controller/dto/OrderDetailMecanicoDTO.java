@@ -4,15 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VehiculoSearchDTOResponse {
-    private String nombreCliente;
+public class OrderDetailMecanicoDTO {
+    private String nombre;
     private String direccion;
     private String telefono;
-    private String placa;
-    private String marca;
-    private String modelo;
-    private String categoria;
+    private String servicio;
+    private String estadoServicio;
+    private String nombreMecanico;
+    private List<String> pasos;
 }

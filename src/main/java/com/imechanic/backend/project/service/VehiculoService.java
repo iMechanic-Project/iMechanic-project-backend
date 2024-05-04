@@ -48,7 +48,7 @@ public class VehiculoService {
         Vehiculo vehiculo = vehiculoRepository.findByPlaca(vehiculoSearchDTORequest.getPlaca())
                 .orElseThrow(() -> new EntidadNoEncontrada("No se encontró el vehiculo con placa: " + vehiculoSearchDTORequest.getPlaca()));
 
-        return new VehiculoSearchDTOResponse(cuentaTaller.getCorreoElectronico(), vehiculo.getCuenta().getNombre(), vehiculo.getCuenta().getDireccion(), vehiculo.getCuenta().getTelefono(), vehiculo.getPlaca(), vehiculo.getMarca().getNombre(), vehiculo.getModelo().getNombre(), vehiculo.getCategoria().toString());
+        return new VehiculoSearchDTOResponse(vehiculo.getCuenta().getNombre(), vehiculo.getCuenta().getDireccion(), vehiculo.getCuenta().getTelefono(), vehiculo.getPlaca(), vehiculo.getMarca().getNombre(), vehiculo.getModelo().getNombre(), vehiculo.getCategoria().toString());
     }
 
     @Transactional(readOnly = true)

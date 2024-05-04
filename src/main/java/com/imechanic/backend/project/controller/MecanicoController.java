@@ -49,4 +49,10 @@ public class MecanicoController {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
         return new ResponseEntity<>(mecanicoService.createMecanico(decodedJWT, mecanico), HttpStatus.CREATED);
     }
+
+    @PutMapping("/service/{serviceId}/paso/{pasoId}/complete")
+    public ResponseEntity<?> completarPaso(@PathVariable Long serviceId, @PathVariable Long pasoId, HttpServletRequest request) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+        return ResponseEntity.ok(mecanicoService.completarPaso(serviceId, pasoId, decodedJWT));
+    }
 }

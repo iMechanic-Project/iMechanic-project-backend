@@ -7,9 +7,12 @@ import com.imechanic.backend.project.exception.EntidadNoEncontrada;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
 import com.imechanic.backend.project.model.Cuenta;
 import com.imechanic.backend.project.model.Mecanico;
+import com.imechanic.backend.project.model.Paso;
 import com.imechanic.backend.project.model.Servicio;
 import com.imechanic.backend.project.repository.CuentaRepository;
 import com.imechanic.backend.project.repository.MecanicoRepository;
+import com.imechanic.backend.project.repository.PasoRepository;
+import com.imechanic.backend.project.repository.ServicioRepository;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +34,8 @@ public class MecanicoService {
     private final MecanicoRepository mecanicoRepository;
     private final PasswordEncoder passwordEncoder;
     private final CuentaRepository cuentaRepository;
+    private final ServicioRepository servicioRepository;
+    private final PasoRepository pasoRepository;
     private final JwtAuthenticationManager jwtAuthenticationManager;
     private final JavaMailSender javaMailSender;
 
@@ -125,5 +130,27 @@ public class MecanicoService {
         message.setSubject(subject);
         message.setText(text);
         javaMailSender.send(message);
+    }
+
+    @Transactional
+    public String completarPaso(Long serviceId, Long pasoId, DecodedJWT decodedJWT) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("MECANICO")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO'");
+        }
+
+        Servicio servicio = servicioRepository.findById(serviceId)
+                .orElseThrow(() -> new EntidadNoEncontrada("Servicio con ID: " + serviceId + "no encontrado"));
+
+        Paso paso = servicio.getPasos().stream()
+                .filter(p -> p.getId().equals(pasoId))
+                .findFirst()
+                .orElseThrow(() -> new EntidadNoEncontrada("Paso con ID: " + pasoId + " no encontrado"));
+
+        paso.setCompletado(true);
+        pasoRepository.save(paso);
+
+        return servicio.getPasos().toString();
     }
 }

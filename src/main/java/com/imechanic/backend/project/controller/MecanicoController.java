@@ -1,10 +1,7 @@
 package com.imechanic.backend.project.controller;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.imechanic.backend.project.controller.dto.MecanicoDTO;
-import com.imechanic.backend.project.controller.dto.MecanicoDTOList;
-import com.imechanic.backend.project.controller.dto.MecanicoDTORequest;
-import com.imechanic.backend.project.controller.dto.MecanicoDTOResponse;
+import com.imechanic.backend.project.controller.dto.*;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import com.imechanic.backend.project.service.MecanicoService;
@@ -54,5 +51,11 @@ public class MecanicoController {
     public ResponseEntity<?> completarPaso(@PathVariable Long serviceId, @PathVariable Long pasoId, HttpServletRequest request) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
         return ResponseEntity.ok(mecanicoService.completarPaso(serviceId, pasoId, decodedJWT));
+    }
+
+    @GetMapping("/order-detail/{orderId}")
+    public ResponseEntity<OrderDetailMecanicoDTO> detalleOrdenmMecanicoService(@PathVariable Long orderId, HttpServletRequest request) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+        return ResponseEntity.ok(mecanicoService.obtenerDetalleOrden(orderId, decodedJWT));
     }
 }

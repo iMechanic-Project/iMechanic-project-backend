@@ -5,14 +5,8 @@ import com.imechanic.backend.project.controller.dto.*;
 import com.imechanic.backend.project.enumeration.Role;
 import com.imechanic.backend.project.exception.EntidadNoEncontrada;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
-import com.imechanic.backend.project.model.Cuenta;
-import com.imechanic.backend.project.model.Mecanico;
-import com.imechanic.backend.project.model.Paso;
-import com.imechanic.backend.project.model.Servicio;
-import com.imechanic.backend.project.repository.CuentaRepository;
-import com.imechanic.backend.project.repository.MecanicoRepository;
-import com.imechanic.backend.project.repository.PasoRepository;
-import com.imechanic.backend.project.repository.ServicioRepository;
+import com.imechanic.backend.project.model.*;
+import com.imechanic.backend.project.repository.*;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,6 +30,7 @@ public class MecanicoService {
     private final CuentaRepository cuentaRepository;
     private final ServicioRepository servicioRepository;
     private final PasoRepository pasoRepository;
+    private final OrdenTrabajoRepository ordenTrabajoRepository;
     private final JwtAuthenticationManager jwtAuthenticationManager;
     private final JavaMailSender javaMailSender;
 
@@ -152,5 +147,43 @@ public class MecanicoService {
         pasoRepository.save(paso);
 
         return servicio.getPasos().toString();
+    }
+
+    @Transactional(readOnly = true)
+    public OrderDetailMecanicoDTO obtenerDetalleOrden(Long orderId, DecodedJWT decodedJWT) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("MECANICO")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO'");
+        }
+
+        String correoElectronico = decodedJWT.getSubject();
+
+        Mecanico mecanico = mecanicoRepository.findByCorreoElectronico(correoElectronico)
+                .orElseThrow(() -> new EntidadNoEncontrada("No se encontro el mecanico con correo: " + correoElectronico));
+
+        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(orderId)
+                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + orderId + " no encontrada"));
+
+        ServicioMecanico servicioMecanico = ordenTrabajo.getServiciosMecanicos().stream()
+                .filter(serv -> serv.getMecanico().equals(mecanico))
+                .findFirst()
+                .orElseThrow(() -> new EntidadNoEncontrada("No se encontró el servicio asignado al mecanico"));
+
+        Servicio servicio = servicioMecanico.getServicio();
+
+        List<Paso> pasos = servicio.getPasos();
+
+        List<String> nombrePasos = pasos.stream()
+                .map(Paso::getNombre)
+                .toList();
+
+        return new OrderDetailMecanicoDTO(ordenTrabajo.getNombreCliente(),
+                ordenTrabajo.getDireccionCliente(),
+                ordenTrabajo.getTelefonoCliente(),
+                servicio.getNombre(),
+                servicio.getEstadoServicio().toString(),
+                mecanico.getNombre(),
+                nombrePasos);
     }
 }

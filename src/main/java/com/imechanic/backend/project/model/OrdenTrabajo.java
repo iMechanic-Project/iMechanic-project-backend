@@ -23,6 +23,9 @@ public class OrdenTrabajo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "correo_cliente")
+    private String correoCliente;
+
     @Column(name = "nombre_cliente")
     private String nombreCliente;
 

@@ -47,6 +47,12 @@ public class MecanicoController {
         return new ResponseEntity<>(mecanicoService.createMecanico(decodedJWT, mecanico), HttpStatus.CREATED);
     }
 
+    @PutMapping("/iniciar-orden/{orderId}")
+    public ResponseEntity<String> iniciarServicio(HttpServletRequest request, @PathVariable Long orderId) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+        return ResponseEntity.ok(mecanicoService.iniciarServicioOrden(decodedJWT, orderId));
+    }
+
     @PutMapping("/service/{serviceId}/paso/{pasoId}/complete")
     public ResponseEntity<?> completarPaso(@PathVariable Long serviceId, @PathVariable Long pasoId, HttpServletRequest request) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
@@ -57,5 +63,11 @@ public class MecanicoController {
     public ResponseEntity<OrderDetailMecanicoDTO> detalleOrdenmMecanicoService(@PathVariable Long orderId, HttpServletRequest request) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
         return ResponseEntity.ok(mecanicoService.obtenerDetalleOrden(orderId, decodedJWT));
+    }
+
+    @PutMapping("/terminar-orden/{orderId}")
+    public ResponseEntity<String> terminarServicio(HttpServletRequest request, @PathVariable Long orderId) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+        return ResponseEntity.ok(mecanicoService.terminarServicioOrden(decodedJWT, orderId));
     }
 }

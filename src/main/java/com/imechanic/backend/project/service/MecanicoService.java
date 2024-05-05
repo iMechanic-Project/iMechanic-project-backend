@@ -2,6 +2,7 @@ package com.imechanic.backend.project.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.imechanic.backend.project.controller.dto.*;
+import com.imechanic.backend.project.enumeration.EstadoOrden;
 import com.imechanic.backend.project.enumeration.Role;
 import com.imechanic.backend.project.exception.EntidadNoEncontrada;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
@@ -127,6 +128,23 @@ public class MecanicoService {
         javaMailSender.send(message);
     }
 
+    @Transactional(readOnly = true)
+    public String iniciarServicioOrden(DecodedJWT decodedJWT, Long orderId) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("MECANICO") && !roleName.equals("TALLER")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO' ni 'TALLER'");
+        }
+
+        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(orderId)
+                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + orderId + " no encontrada"));
+
+        ordenTrabajo.setEstado(EstadoOrden.EN_PROCESO);
+        ordenTrabajoRepository.save(ordenTrabajo);
+
+        return "Estado actualizado: " + ordenTrabajo.getEstado();
+    }
+
     @Transactional
     public String completarPaso(Long serviceId, Long pasoId, DecodedJWT decodedJWT) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
@@ -185,5 +203,22 @@ public class MecanicoService {
                 servicio.getEstadoServicio().toString(),
                 mecanico.getNombre(),
                 nombrePasos);
+    }
+
+    @Transactional(readOnly = true)
+    public String terminarServicioOrden(DecodedJWT decodedJWT, Long orderId) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("MECANICO") && !roleName.equals("TALLER")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO' ni 'TALLER'");
+        }
+
+        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(orderId)
+                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + orderId + " no encontrada"));
+
+        ordenTrabajo.setEstado(EstadoOrden.FINALIZADO);
+        ordenTrabajoRepository.save(ordenTrabajo);
+
+        return "Estado actualizado: " + ordenTrabajo.getEstado();
     }
 }

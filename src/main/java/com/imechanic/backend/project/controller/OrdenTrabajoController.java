@@ -34,10 +34,4 @@ public class OrdenTrabajoController {
         List<OrdenTrabajoDTOList> ordenes = ordenTrabajoService.obtenerTodasLasOrdenesDeTaller(decodedJWT);
         return ResponseEntity.ok(ordenes);
     }
-
-    @PutMapping("/{orderId}/cambiar-estado")
-    public ResponseEntity<String> actualizarEstadoOrden(HttpServletRequest request, @PathVariable Long orderId) {
-        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
-        return ResponseEntity.ok(ordenTrabajoService.iniciarOrden(decodedJWT, orderId));
-    }
 }

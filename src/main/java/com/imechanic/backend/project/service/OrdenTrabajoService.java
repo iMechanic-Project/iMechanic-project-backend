@@ -108,21 +108,4 @@ public class OrdenTrabajoService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional(readOnly = true)
-    public String iniciarOrden(DecodedJWT decodedJWT, Long orderId) {
-        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
-
-        if (!roleName.equals("MECANICO") && !roleName.equals("TALLER")) {
-            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO' ni 'TALLER'");
-        }
-
-        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(orderId)
-                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + orderId + " no encontrada"));
-
-        ordenTrabajo.setEstado(EstadoOrden.EN_PROCESO);
-        ordenTrabajoRepository.save(ordenTrabajo);
-
-        return "Estado actualizado: " + ordenTrabajo.getEstado();
-    }
-
 }

@@ -2,6 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.2.5"
 	id("io.spring.dependency-management") version "1.1.4"
+	id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "com.imechanic.backend.project"
@@ -37,4 +38,12 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+sonar {
+  properties {
+    property("sonar.projectKey", "iMechanic-Project_iMechanic-project-backend")
+    property("sonar.organization", "imechanic-project")
+    property("sonar.host.url", "https://sonarcloud.io")
+  }
 }

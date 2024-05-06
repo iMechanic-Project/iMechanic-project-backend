@@ -47,6 +47,20 @@ public class MecanicoController {
         return new ResponseEntity<>(mecanicoService.createMecanico(decodedJWT, mecanico), HttpStatus.CREATED);
     }
 
+    @GetMapping("/ordenes")
+    public ResponseEntity<List<OrdenTrabajoMecanicoDTOList>> obtenerOrdenesDeTaller(HttpServletRequest request) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+
+        List<OrdenTrabajoMecanicoDTOList> ordenes = mecanicoService.obtenerTodasLasOrdenesDeMecanico(decodedJWT);
+        return ResponseEntity.ok(ordenes);
+    }
+
+    @GetMapping("/order-detail/{orderId}")
+    public ResponseEntity<OrderDetailMecanicoDTO> detalleOrdenMecanicoService(@PathVariable Long orderId, HttpServletRequest request) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+        return ResponseEntity.ok(mecanicoService.obtenerDetalleOrden(orderId, decodedJWT));
+    }
+
     @PutMapping("/iniciar-orden/{orderId}")
     public ResponseEntity<String> iniciarServicio(HttpServletRequest request, @PathVariable Long orderId) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
@@ -57,12 +71,6 @@ public class MecanicoController {
     public ResponseEntity<?> completarPaso(@PathVariable Long serviceId, @PathVariable Long pasoId, HttpServletRequest request) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
         return ResponseEntity.ok(mecanicoService.completarPaso(serviceId, pasoId, decodedJWT));
-    }
-
-    @GetMapping("/order-detail/{orderId}")
-    public ResponseEntity<OrderDetailMecanicoDTO> detalleOrdenmMecanicoService(@PathVariable Long orderId, HttpServletRequest request) {
-        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
-        return ResponseEntity.ok(mecanicoService.obtenerDetalleOrden(orderId, decodedJWT));
     }
 
     @PutMapping("/terminar-orden/{orderId}")

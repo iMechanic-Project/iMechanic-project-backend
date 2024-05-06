@@ -16,5 +16,5 @@ public class OrderDetailMecanicoDTO {
     private String servicio;
     private String estadoServicio;
     private String nombreMecanico;
-    private List<String> pasos;
+    private List<PasoDTO> pasos;
 }

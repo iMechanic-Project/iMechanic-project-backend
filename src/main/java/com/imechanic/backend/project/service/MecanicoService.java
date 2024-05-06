@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,6 +38,8 @@ public class MecanicoService {
 
     @Value("${spring.email.sender.user}")
     private String user;
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
     @Transactional(readOnly = true)
     public List<MecanicoDTO> getAllMechanicsByTaller(DecodedJWT decodedJWT) {
@@ -129,6 +132,70 @@ public class MecanicoService {
     }
 
     @Transactional(readOnly = true)
+    public List<OrdenTrabajoMecanicoDTOList> obtenerTodasLasOrdenesDeMecanico(DecodedJWT decodedJWT) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("MECANICO")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO'");
+        }
+
+        String correoElectronico = decodedJWT.getSubject();
+
+        Mecanico mecanico = mecanicoRepository.findByCorreoElectronico(correoElectronico)
+                .orElseThrow(() -> new EntidadNoEncontrada("Mecanico con correo: " + correoElectronico + " no encontrado"));
+
+        List<OrdenTrabajo> ordenTrabajos = ordenTrabajoRepository.findAllByMecanicoId(mecanico.getId());
+
+        return ordenTrabajos.stream()
+                .map(orden -> new OrdenTrabajoMecanicoDTOList(
+                        orden.getId(),
+                        orden.getPlaca(),
+                        dateFormat.format(orden.getFechaRegistro()), // Formatea la fecha
+                        timeFormat.format(orden.getFechaRegistro()), // Formatea la hora
+                        orden.getEstado().toString()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public OrderDetailMecanicoDTO obtenerDetalleOrden(Long orderId, DecodedJWT decodedJWT) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("MECANICO")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO'");
+        }
+
+        String correoElectronico = decodedJWT.getSubject();
+
+        Mecanico mecanico = mecanicoRepository.findByCorreoElectronico(correoElectronico)
+                .orElseThrow(() -> new EntidadNoEncontrada("No se encontro el mecanico con correo: " + correoElectronico));
+
+        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(orderId)
+                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + orderId + " no encontrada"));
+
+        ServicioMecanico servicioMecanico = ordenTrabajo.getServiciosMecanicos().stream()
+                .filter(serv -> serv.getMecanico().equals(mecanico))
+                .findFirst()
+                .orElseThrow(() -> new EntidadNoEncontrada("No se encontró el servicio asignado al mecanico"));
+
+        Servicio servicio = servicioMecanico.getServicio();
+
+        List<Paso> pasos = servicio.getPasos();
+
+        List<PasoDTO> nombrePasos = pasos.stream()
+                .map(paso -> new PasoDTO(paso.getNombre(), paso.isCompletado()))
+                .toList();
+
+        return new OrderDetailMecanicoDTO(ordenTrabajo.getNombreCliente(),
+                ordenTrabajo.getDireccionCliente(),
+                ordenTrabajo.getTelefonoCliente(),
+                servicio.getNombre(),
+                servicio.getEstadoServicio().toString(),
+                mecanico.getNombre(),
+                nombrePasos);
+    }
+
+    @Transactional(readOnly = true)
     public String iniciarServicioOrden(DecodedJWT decodedJWT, Long orderId) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
@@ -165,44 +232,6 @@ public class MecanicoService {
         pasoRepository.save(paso);
 
         return servicio.getPasos().toString();
-    }
-
-    @Transactional(readOnly = true)
-    public OrderDetailMecanicoDTO obtenerDetalleOrden(Long orderId, DecodedJWT decodedJWT) {
-        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
-
-        if (!roleName.equals("MECANICO")) {
-            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO'");
-        }
-
-        String correoElectronico = decodedJWT.getSubject();
-
-        Mecanico mecanico = mecanicoRepository.findByCorreoElectronico(correoElectronico)
-                .orElseThrow(() -> new EntidadNoEncontrada("No se encontro el mecanico con correo: " + correoElectronico));
-
-        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(orderId)
-                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + orderId + " no encontrada"));
-
-        ServicioMecanico servicioMecanico = ordenTrabajo.getServiciosMecanicos().stream()
-                .filter(serv -> serv.getMecanico().equals(mecanico))
-                .findFirst()
-                .orElseThrow(() -> new EntidadNoEncontrada("No se encontró el servicio asignado al mecanico"));
-
-        Servicio servicio = servicioMecanico.getServicio();
-
-        List<Paso> pasos = servicio.getPasos();
-
-        List<String> nombrePasos = pasos.stream()
-                .map(Paso::getNombre)
-                .toList();
-
-        return new OrderDetailMecanicoDTO(ordenTrabajo.getNombreCliente(),
-                ordenTrabajo.getDireccionCliente(),
-                ordenTrabajo.getTelefonoCliente(),
-                servicio.getNombre(),
-                servicio.getEstadoServicio().toString(),
-                mecanico.getNombre(),
-                nombrePasos);
     }
 
     @Transactional(readOnly = true)

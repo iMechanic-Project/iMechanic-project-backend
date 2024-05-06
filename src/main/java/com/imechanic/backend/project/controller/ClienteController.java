@@ -1,7 +1,7 @@
 package com.imechanic.backend.project.controller;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTOList;
+import com.imechanic.backend.project.controller.dto.OrdenTrabajoClienteDTOList;
 import com.imechanic.backend.project.controller.dto.OrderDetailDTO;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import com.imechanic.backend.project.service.ClienteService;
@@ -23,10 +23,10 @@ public class ClienteController {
     private final JwtAuthenticationManager jwtAuthenticationManager;
 
     @GetMapping("/ordenes")
-    public ResponseEntity<List<OrdenTrabajoDTOList>> obtenerOrdenesDeTaller(HttpServletRequest request) {
+    public ResponseEntity<List<OrdenTrabajoClienteDTOList>> obtenerOrdenesDeTaller(HttpServletRequest request) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
 
-        List<OrdenTrabajoDTOList> ordenes = clienteService.obtenerTodasLasOrdenesDeCliente(decodedJWT);
+        List<OrdenTrabajoClienteDTOList> ordenes = clienteService.obtenerTodasLasOrdenesDeCliente(decodedJWT);
         return ResponseEntity.ok(ordenes);
     }
 

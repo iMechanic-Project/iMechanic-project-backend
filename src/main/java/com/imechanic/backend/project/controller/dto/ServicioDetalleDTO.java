@@ -13,5 +13,5 @@ public class ServicioDetalleDTO {
     private String nombreServicio;
     private String nombreMecanico;
     private String estadoServicio;
-    private List<String> pasos;
+    private List<PasoDTO> pasos;
 }

@@ -16,9 +16,11 @@ public class CorsConfig implements Filter {
 
     @Value("${url.client.side}")
     private String baseUrl;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         // TODO Auto-generated method stub
+        System.out.println();
     }
 
     @Override

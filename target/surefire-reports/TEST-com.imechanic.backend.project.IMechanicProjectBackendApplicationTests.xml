@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.imechanic.backend.project.IMechanicProjectBackendApplicationTests" time="14.753" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.imechanic.backend.project.IMechanicProjectBackendApplicationTests" time="14.015" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="PE"/>
     <property name="sun.boot.library.path" value="C:\jdk\bin"/>
-    <property name="sun.java.command" value="C:\Users\LUIS\AppData\Local\Temp\surefire7862150713406284000\surefirebooter-20240506153445407_3.jar C:\Users\LUIS\AppData\Local\Temp\surefire7862150713406284000 2024-05-06T15-34-45_223-jvmRun1 surefire-20240506153445407_1tmp surefire_0-20240506153445407_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\LUIS\AppData\Local\Temp\surefire15667801180618475107\surefirebooter-20240506161333097_3.jar C:\Users\LUIS\AppData\Local\Temp\surefire15667801180618475107 2024-05-06T16-13-32_918-jvmRun1 surefire-20240506161333097_1tmp surefire_0-20240506161333097_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\workspace\iMechanic-Project\iMechanic-project-backend\target\test-classes;C:\workspace\iMechanic-Project\iMechanic-project-backend\target\classes;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.2.5\spring-boot-starter-data-jpa-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.2.5\spring-boot-starter-aop-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\aspectj\aspectjweaver\1.9.22\aspectjweaver-1.9.22.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.2.5\spring-boot-starter-jdbc-3.2.5.jar;C:\Users\LUIS\.m2\repository\com\zaxxer\HikariCP\5.0.1\HikariCP-5.0.1.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-jdbc\6.1.6\spring-jdbc-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\hibernate\orm\hibernate-core\6.4.4.Final\hibernate-core-6.4.4.Final.jar;C:\Users\LUIS\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\LUIS\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\LUIS\.m2\repository\org\jboss\logging\jboss-logging\3.5.3.Final\jboss-logging-3.5.3.Final.jar;C:\Users\LUIS\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.6.Final\hibernate-commons-annotations-6.0.6.Final.jar;C:\Users\LUIS\.m2\repository\io\smallrye\jandex\3.1.2\jandex-3.1.2.jar;C:\Users\LUIS\.m2\repository\com\fasterxml\classmate\1.6.0\classmate-1.6.0.jar;C:\Users\LUIS\.m2\repository\net\bytebuddy\byte-buddy\1.14.13\byte-buddy-1.14.13.jar;C:\Users\LUIS\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.5\jaxb-runtime-4.0.5.jar;C:\Users\LUIS\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.5\jaxb-core-4.0.5.jar;C:\Users\LUIS\.m2\repository\org\glassfish\jaxb\txw2\4.0.5\txw2-4.0.5.jar;C:\Users\LUIS\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.2\istack-commons-runtime-4.1.2.jar;C:\Users\LUIS\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\LUIS\.m2\repository\org\antlr\antlr4-runtime\4.13.0\antlr4-runtime-4.13.0.jar;C:\Users\LUIS\.m2\repository\org\springframework\data\spring-data-jpa\3.2.5\spring-data-jpa-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\data\spring-data-commons\3.2.5\spring-data-commons-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-orm\6.1.6\spring-orm-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-context\6.1.6\spring-context-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-tx\6.1.6\spring-tx-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-beans\6.1.6\spring-beans-6.1.6.jar;C:\Users\LUIS\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\LUIS\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-aspects\6.1.6\spring-aspects-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-security\3.2.5\spring-boot-starter-security-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter\3.2.5\spring-boot-starter-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot\3.2.5\spring-boot-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.2.5\spring-boot-autoconfigure-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.2.5\spring-boot-starter-logging-3.2.5.jar;C:\Users\LUIS\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\LUIS\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\LUIS\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.21.1\log4j-to-slf4j-2.21.1.jar;C:\Users\LUIS\.m2\repository\org\apache\logging\log4j\log4j-api\2.21.1\log4j-api-2.21.1.jar;C:\Users\LUIS\.m2\repository\org\slf4j\jul-to-slf4j\2.0.13\jul-to-slf4j-2.0.13.jar;C:\Users\LUIS\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-aop\6.1.6\spring-aop-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\springframework\security\spring-security-config\6.2.4\spring-security-config-6.2.4.jar;C:\Users\LUIS\.m2\repository\org\springframework\security\spring-security-web\6.2.4\spring-security-web-6.2.4.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-expression\6.1.6\spring-expression-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.2.5\spring-boot-starter-validation-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.20\tomcat-embed-el-10.1.20.jar;C:\Users\LUIS\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\LUIS\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.2.5\spring-boot-starter-web-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.2.5\spring-boot-starter-json-3.2.5.jar;C:\Users\LUIS\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.15.4\jackson-datatype-jdk8-2.15.4.jar;C:\Users\LUIS\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.15.4\jackson-datatype-jsr310-2.15.4.jar;C:\Users\LUIS\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.15.4\jackson-module-parameter-names-2.15.4.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.2.5\spring-boot-starter-tomcat-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.20\tomcat-embed-core-10.1.20.jar;C:\Users\LUIS\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.20\tomcat-embed-websocket-10.1.20.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-web\6.1.6\spring-web-6.1.6.jar;C:\Users\LUIS\.m2\repository\io\micrometer\micrometer-observation\1.12.5\micrometer-observation-1.12.5.jar;C:\Users\LUIS\.m2\repository\io\micrometer\micrometer-commons\1.12.5\micrometer-commons-1.12.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-webmvc\6.1.6\spring-webmvc-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-websocket\3.2.5\spring-boot-starter-websocket-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-messaging\6.1.6\spring-messaging-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-websocket\6.1.6\spring-websocket-6.1.6.jar;C:\Users\LUIS\.m2\repository\com\mysql\mysql-connector-j\8.3.0\mysql-connector-j-8.3.0.jar;C:\Users\LUIS\.m2\repository\org\projectlombok\lombok\1.18.32\lombok-1.18.32.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.2.5\spring-boot-starter-test-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-test\3.2.5\spring-boot-test-3.2.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.2.5\spring-boot-test-autoconfigure-3.2.5.jar;C:\Users\LUIS\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar;C:\Users\LUIS\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.2\jakarta.xml.bind-api-4.0.2.jar;C:\Users\LUIS\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\LUIS\.m2\repository\net\minidev\json-smart\2.5.1\json-smart-2.5.1.jar;C:\Users\LUIS\.m2\repository\net\minidev\accessors-smart\2.5.1\accessors-smart-2.5.1.jar;C:\Users\LUIS\.m2\repository\org\ow2\asm\asm\9.6\asm-9.6.jar;C:\Users\LUIS\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\LUIS\.m2\repository\org\awaitility\awaitility\4.2.1\awaitility-4.2.1.jar;C:\Users\LUIS\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\LUIS\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\LUIS\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\LUIS\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\LUIS\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\LUIS\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\LUIS\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\LUIS\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\LUIS\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\LUIS\.m2\repository\org\mockito\mockito-core\5.7.0\mockito-core-5.7.0.jar;C:\Users\LUIS\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.13\byte-buddy-agent-1.14.13.jar;C:\Users\LUIS\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\LUIS\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;C:\Users\LUIS\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\LUIS\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-core\6.1.6\spring-core-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-jcl\6.1.6\spring-jcl-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-test\6.1.6\spring-test-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;C:\Users\LUIS\.m2\repository\org\springframework\security\spring-security-test\6.2.4\spring-security-test-6.2.4.jar;C:\Users\LUIS\.m2\repository\org\springframework\security\spring-security-core\6.2.4\spring-security-core-6.2.4.jar;C:\Users\LUIS\.m2\repository\org\springframework\security\spring-security-crypto\6.2.4\spring-security-crypto-6.2.4.jar;C:\Users\LUIS\.m2\repository\org\springframework\boot\spring-boot-starter-mail\3.1.5\spring-boot-starter-mail-3.1.5.jar;C:\Users\LUIS\.m2\repository\org\springframework\spring-context-support\6.1.6\spring-context-support-6.1.6.jar;C:\Users\LUIS\.m2\repository\org\eclipse\angus\jakarta.mail\2.0.3\jakarta.mail-2.0.3.jar;C:\Users\LUIS\.m2\repository\org\eclipse\angus\angus-activation\2.0.2\angus-activation-2.0.2.jar;C:\Users\LUIS\.m2\repository\com\auth0\java-jwt\4.4.0\java-jwt-4.4.0.jar;C:\Users\LUIS\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.4\jackson-databind-2.15.4.jar;C:\Users\LUIS\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.4\jackson-annotations-2.15.4.jar;C:\Users\LUIS\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.4\jackson-core-2.15.4.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="FILE_LOG_CHARSET" value="UTF-8"/>
     <property name="java.awt.headless" value="true"/>
-    <property name="surefire.real.class.path" value="C:\Users\LUIS\AppData\Local\Temp\surefire7862150713406284000\surefirebooter-20240506153445407_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\LUIS\AppData\Local\Temp\surefire15667801180618475107\surefirebooter-20240506161333097_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.1+12-LTS-29"/>
@@ -53,7 +53,7 @@
     <property name="user.dir" value="C:\workspace\iMechanic-Project\iMechanic-project-backend"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="13148"/>
+    <property name="PID" value="18160"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="Cp1252"/>
@@ -66,9 +66,9 @@
     <property name="java.class.version" value="65.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[iMechanic-project-backend] "/>
   </properties>
-  <testcase name="contextLoads" classname="com.imechanic.backend.project.IMechanicProjectBackendApplicationTests" time="0.825">
-    <system-out><![CDATA[15:34:46.943 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.imechanic.backend.project.IMechanicProjectBackendApplicationTests]: IMechanicProjectBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-15:34:47.129 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.imechanic.backend.project.IMechanicProjectBackendApplication for test class com.imechanic.backend.project.IMechanicProjectBackendApplicationTests
+  <testcase name="contextLoads" classname="com.imechanic.backend.project.IMechanicProjectBackendApplicationTests" time="0.801">
+    <system-out><![CDATA[16:13:34.653 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.imechanic.backend.project.IMechanicProjectBackendApplicationTests]: IMechanicProjectBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:13:34.855 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.imechanic.backend.project.IMechanicProjectBackendApplication for test class com.imechanic.backend.project.IMechanicProjectBackendApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -78,20 +78,20 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2024-05-06T15:34:47.887-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] .IMechanicProjectBackendApplicationTests : Starting IMechanicProjectBackendApplicationTests using Java 21.0.1 with PID 13148 (started by LUIS in C:\workspace\iMechanic-Project\iMechanic-project-backend)
-2024-05-06T15:34:47.889-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] .IMechanicProjectBackendApplicationTests : No active profile set, falling back to 1 default profile: "default"
-2024-05-06T15:34:49.413-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-05-06T15:34:49.573-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 147 ms. Found 11 JPA repository interfaces.
-2024-05-06T15:34:50.666-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-05-06T15:34:50.822-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-05-06T15:34:50.898-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-05-06T15:34:51.485-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-05-06T15:34:51.558-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-05-06T15:34:52.199-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@213012a0
-2024-05-06T15:34:52.204-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-05-06T15:34:52.314-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-05-06T15:34:54.883-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-05-06T15:34:54.957-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table cliente drop foreign key FKrbty0dgjyinint2nsls0tc5hv" via JDBC [Table 'imachine_db.cliente' doesn't exist]
+2024-05-06T16:13:35.629-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] .IMechanicProjectBackendApplicationTests : Starting IMechanicProjectBackendApplicationTests using Java 21.0.1 with PID 18160 (started by LUIS in C:\workspace\iMechanic-Project\iMechanic-project-backend)
+2024-05-06T16:13:35.632-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] .IMechanicProjectBackendApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2024-05-06T16:13:37.089-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-06T16:13:37.242-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 142 ms. Found 11 JPA repository interfaces.
+2024-05-06T16:13:38.382-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-06T16:13:38.523-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-06T16:13:38.588-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-05-06T16:13:39.161-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-06T16:13:39.228-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-05-06T16:13:39.823-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@22e813fc
+2024-05-06T16:13:39.827-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-05-06T16:13:39.927-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-06T16:13:42.129-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-06T16:13:42.196-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table cliente drop foreign key FKrbty0dgjyinint2nsls0tc5hv" via JDBC [Table 'imachine_db.cliente' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table cliente drop foreign key FKrbty0dgjyinint2nsls0tc5hv" via JDBC [Table 'imachine_db.cliente' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -223,7 +223,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.cliente' doesn't
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:54.971-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table cuenta_servicios drop foreign key FKqfj87j1eb8dyvaxv1ab4q2g3h" via JDBC [Table 'imachine_db.cuenta_servicios' doesn't exist]
+2024-05-06T16:13:42.208-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table cuenta_servicios drop foreign key FKqfj87j1eb8dyvaxv1ab4q2g3h" via JDBC [Table 'imachine_db.cuenta_servicios' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table cuenta_servicios drop foreign key FKqfj87j1eb8dyvaxv1ab4q2g3h" via JDBC [Table 'imachine_db.cuenta_servicios' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -355,7 +355,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.cuenta_servicios
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:54.979-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table cuenta_servicios drop foreign key FKb4wbc4dii7ej6bxwyfwx5rivu" via JDBC [Table 'imachine_db.cuenta_servicios' doesn't exist]
+2024-05-06T16:13:42.217-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table cuenta_servicios drop foreign key FKb4wbc4dii7ej6bxwyfwx5rivu" via JDBC [Table 'imachine_db.cuenta_servicios' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table cuenta_servicios drop foreign key FKb4wbc4dii7ej6bxwyfwx5rivu" via JDBC [Table 'imachine_db.cuenta_servicios' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -487,7 +487,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.cuenta_servicios
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:54.986-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mecanico drop foreign key FKpqy7disp7pgdfkccptfl7g5i" via JDBC [Table 'imachine_db.mecanico' doesn't exist]
+2024-05-06T16:13:42.225-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mecanico drop foreign key FKpqy7disp7pgdfkccptfl7g5i" via JDBC [Table 'imachine_db.mecanico' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table mecanico drop foreign key FKpqy7disp7pgdfkccptfl7g5i" via JDBC [Table 'imachine_db.mecanico' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -619,7 +619,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.mecanico' doesn'
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:54.992-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mecanico_servicios drop foreign key FK4mid77n6qgysakpg9mj3xgja" via JDBC [Table 'imachine_db.mecanico_servicios' doesn't exist]
+2024-05-06T16:13:42.230-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mecanico_servicios drop foreign key FK4mid77n6qgysakpg9mj3xgja" via JDBC [Table 'imachine_db.mecanico_servicios' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table mecanico_servicios drop foreign key FK4mid77n6qgysakpg9mj3xgja" via JDBC [Table 'imachine_db.mecanico_servicios' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -751,7 +751,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.mecanico_servici
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:54.998-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mecanico_servicios drop foreign key FK3s7a64rn3t8bf5u6dmisd5fpb" via JDBC [Table 'imachine_db.mecanico_servicios' doesn't exist]
+2024-05-06T16:13:42.234-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mecanico_servicios drop foreign key FK3s7a64rn3t8bf5u6dmisd5fpb" via JDBC [Table 'imachine_db.mecanico_servicios' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table mecanico_servicios drop foreign key FK3s7a64rn3t8bf5u6dmisd5fpb" via JDBC [Table 'imachine_db.mecanico_servicios' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -883,7 +883,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.mecanico_servici
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.002-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mensaje_chat drop foreign key FKt7ycp8l0myfr1jjo118kpo0y4" via JDBC [Table 'imachine_db.mensaje_chat' doesn't exist]
+2024-05-06T16:13:42.239-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mensaje_chat drop foreign key FKt7ycp8l0myfr1jjo118kpo0y4" via JDBC [Table 'imachine_db.mensaje_chat' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table mensaje_chat drop foreign key FKt7ycp8l0myfr1jjo118kpo0y4" via JDBC [Table 'imachine_db.mensaje_chat' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -1015,7 +1015,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.mensaje_chat' do
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.008-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mensaje_chat drop foreign key FKeqkiyip1irjynk88dfexaq6vf" via JDBC [Table 'imachine_db.mensaje_chat' doesn't exist]
+2024-05-06T16:13:42.243-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mensaje_chat drop foreign key FKeqkiyip1irjynk88dfexaq6vf" via JDBC [Table 'imachine_db.mensaje_chat' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table mensaje_chat drop foreign key FKeqkiyip1irjynk88dfexaq6vf" via JDBC [Table 'imachine_db.mensaje_chat' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -1147,7 +1147,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.mensaje_chat' do
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.013-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mensaje_chat drop foreign key FKnvcbit2o932gi5jl1qcn1jbp2" via JDBC [Table 'imachine_db.mensaje_chat' doesn't exist]
+2024-05-06T16:13:42.248-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table mensaje_chat drop foreign key FKnvcbit2o932gi5jl1qcn1jbp2" via JDBC [Table 'imachine_db.mensaje_chat' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table mensaje_chat drop foreign key FKnvcbit2o932gi5jl1qcn1jbp2" via JDBC [Table 'imachine_db.mensaje_chat' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -1279,7 +1279,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.mensaje_chat' do
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.018-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table modelo drop foreign key FKllxq2dldvhxvb5q9csar7vdfy" via JDBC [Table 'imachine_db.modelo' doesn't exist]
+2024-05-06T16:13:42.254-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table modelo drop foreign key FKllxq2dldvhxvb5q9csar7vdfy" via JDBC [Table 'imachine_db.modelo' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table modelo drop foreign key FKllxq2dldvhxvb5q9csar7vdfy" via JDBC [Table 'imachine_db.modelo' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -1411,7 +1411,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.modelo' doesn't 
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.023-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table orden_trabajo drop foreign key FKcfk64a6whrejp92schl299ecl" via JDBC [Table 'imachine_db.orden_trabajo' doesn't exist]
+2024-05-06T16:13:42.259-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table orden_trabajo drop foreign key FKcfk64a6whrejp92schl299ecl" via JDBC [Table 'imachine_db.orden_trabajo' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table orden_trabajo drop foreign key FKcfk64a6whrejp92schl299ecl" via JDBC [Table 'imachine_db.orden_trabajo' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -1543,7 +1543,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.orden_trabajo' d
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.027-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table paso drop foreign key FKcl49hkfjticyebo77flqo5hsn" via JDBC [Table 'imachine_db.paso' doesn't exist]
+2024-05-06T16:13:42.263-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table paso drop foreign key FKcl49hkfjticyebo77flqo5hsn" via JDBC [Table 'imachine_db.paso' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table paso drop foreign key FKcl49hkfjticyebo77flqo5hsn" via JDBC [Table 'imachine_db.paso' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -1675,7 +1675,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.paso' doesn't ex
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.032-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table sala_chat drop foreign key FK6vs5p8aqh5wdvmqrmmjlwohlg" via JDBC [Table 'imachine_db.sala_chat' doesn't exist]
+2024-05-06T16:13:42.268-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table sala_chat drop foreign key FK6vs5p8aqh5wdvmqrmmjlwohlg" via JDBC [Table 'imachine_db.sala_chat' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table sala_chat drop foreign key FK6vs5p8aqh5wdvmqrmmjlwohlg" via JDBC [Table 'imachine_db.sala_chat' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -1807,7 +1807,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.sala_chat' doesn
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.036-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table sala_chat drop foreign key FK5w5kd3tpdpymjo37uamaottoc" via JDBC [Table 'imachine_db.sala_chat' doesn't exist]
+2024-05-06T16:13:42.272-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table sala_chat drop foreign key FK5w5kd3tpdpymjo37uamaottoc" via JDBC [Table 'imachine_db.sala_chat' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table sala_chat drop foreign key FK5w5kd3tpdpymjo37uamaottoc" via JDBC [Table 'imachine_db.sala_chat' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -1939,7 +1939,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.sala_chat' doesn
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.040-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table servicio_mecanico drop foreign key FKexqsjd8kmq1mvoar1pukt8p6r" via JDBC [Table 'imachine_db.servicio_mecanico' doesn't exist]
+2024-05-06T16:13:42.276-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table servicio_mecanico drop foreign key FKexqsjd8kmq1mvoar1pukt8p6r" via JDBC [Table 'imachine_db.servicio_mecanico' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table servicio_mecanico drop foreign key FKexqsjd8kmq1mvoar1pukt8p6r" via JDBC [Table 'imachine_db.servicio_mecanico' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -2071,7 +2071,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.servicio_mecanic
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.044-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table servicio_mecanico drop foreign key FKtgdc2tneluk2xpydt5flmko1a" via JDBC [Table 'imachine_db.servicio_mecanico' doesn't exist]
+2024-05-06T16:13:42.281-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table servicio_mecanico drop foreign key FKtgdc2tneluk2xpydt5flmko1a" via JDBC [Table 'imachine_db.servicio_mecanico' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table servicio_mecanico drop foreign key FKtgdc2tneluk2xpydt5flmko1a" via JDBC [Table 'imachine_db.servicio_mecanico' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -2203,7 +2203,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.servicio_mecanic
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.048-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table servicio_mecanico drop foreign key FK6pa3u1temch9n0kw09j67dr1f" via JDBC [Table 'imachine_db.servicio_mecanico' doesn't exist]
+2024-05-06T16:13:42.285-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table servicio_mecanico drop foreign key FK6pa3u1temch9n0kw09j67dr1f" via JDBC [Table 'imachine_db.servicio_mecanico' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table servicio_mecanico drop foreign key FK6pa3u1temch9n0kw09j67dr1f" via JDBC [Table 'imachine_db.servicio_mecanico' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -2335,7 +2335,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.servicio_mecanic
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.052-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table taller drop foreign key FKlscxebaatbvyfey0drekclwdo" via JDBC [Table 'imachine_db.taller' doesn't exist]
+2024-05-06T16:13:42.290-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table taller drop foreign key FKlscxebaatbvyfey0drekclwdo" via JDBC [Table 'imachine_db.taller' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table taller drop foreign key FKlscxebaatbvyfey0drekclwdo" via JDBC [Table 'imachine_db.taller' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -2467,7 +2467,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.taller' doesn't 
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.056-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table vehiculo drop foreign key FKf229q00480ns2jp88h6sovki" via JDBC [Table 'imachine_db.vehiculo' doesn't exist]
+2024-05-06T16:13:42.295-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table vehiculo drop foreign key FKf229q00480ns2jp88h6sovki" via JDBC [Table 'imachine_db.vehiculo' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table vehiculo drop foreign key FKf229q00480ns2jp88h6sovki" via JDBC [Table 'imachine_db.vehiculo' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -2599,7 +2599,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.vehiculo' doesn'
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.060-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table vehiculo drop foreign key FKkhbi3kqfa08r839lyrv5wemya" via JDBC [Table 'imachine_db.vehiculo' doesn't exist]
+2024-05-06T16:13:42.300-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table vehiculo drop foreign key FKkhbi3kqfa08r839lyrv5wemya" via JDBC [Table 'imachine_db.vehiculo' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table vehiculo drop foreign key FKkhbi3kqfa08r839lyrv5wemya" via JDBC [Table 'imachine_db.vehiculo' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -2731,7 +2731,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.vehiculo' doesn'
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:55.064-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table vehiculo drop foreign key FKp9hj7g6ceqe80ix17a435q7o0" via JDBC [Table 'imachine_db.vehiculo' doesn't exist]
+2024-05-06T16:13:42.303-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table vehiculo drop foreign key FKp9hj7g6ceqe80ix17a435q7o0" via JDBC [Table 'imachine_db.vehiculo' doesn't exist]
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table vehiculo drop foreign key FKp9hj7g6ceqe80ix17a435q7o0" via JDBC [Table 'imachine_db.vehiculo' doesn't exist]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
@@ -2863,14 +2863,14 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'imachine_db.vehiculo' doesn'
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
 	... 118 common frames omitted
 
-2024-05-06T15:34:56.788-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-05-06T15:34:57.575-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-05-06T15:34:58.928-05:00  WARN 13148 --- [iMechanic-project-backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-05-06T15:34:59.752-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@404bca88, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@509cf379, org.springframework.security.web.context.SecurityContextHolderFilter@21ad0060, org.springframework.security.web.header.HeaderWriterFilter@ffd26d1, org.springframework.web.filter.CorsFilter@4f517209, org.springframework.security.web.authentication.logout.LogoutFilter@4a9e6ea7, com.imechanic.backend.project.security.filter.JwtTokenValidator@60877629, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@756476a3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@354d5692, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c4f07c1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e86ff3b, org.springframework.security.web.session.SessionManagementFilter@141cee26, org.springframework.security.web.access.ExceptionTranslationFilter@36e23af, org.springframework.security.web.access.intercept.AuthorizationFilter@2cf7860e]
-2024-05-06T15:35:00.478-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2024-05-06T15:35:00.481-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@e2bdc58]]
-2024-05-06T15:35:00.483-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2024-05-06T15:35:00.497-05:00  INFO 13148 --- [iMechanic-project-backend] [           main] .IMechanicProjectBackendApplicationTests : Started IMechanicProjectBackendApplicationTests in 13.07 seconds (process running for 14.869)
+2024-05-06T16:13:43.858-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-06T16:13:44.546-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-06T16:13:45.943-05:00  WARN 18160 --- [iMechanic-project-backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-06T16:13:46.708-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4b5c84be, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@404bca88, org.springframework.security.web.context.SecurityContextHolderFilter@58d9cd6, org.springframework.security.web.header.HeaderWriterFilter@544ee437, org.springframework.web.filter.CorsFilter@509cf379, org.springframework.security.web.authentication.logout.LogoutFilter@504521ae, com.imechanic.backend.project.security.filter.JwtTokenValidator@4f517209, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6a7c1725, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5233b7ad, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@354d5692, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@60877629, org.springframework.security.web.session.SessionManagementFilter@2700609f, org.springframework.security.web.access.ExceptionTranslationFilter@92a584f, org.springframework.security.web.access.intercept.AuthorizationFilter@28446b06]
+2024-05-06T16:13:47.471-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2024-05-06T16:13:47.475-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@40c65a03]]
+2024-05-06T16:13:47.476-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2024-05-06T16:13:47.486-05:00  INFO 18160 --- [iMechanic-project-backend] [           main] .IMechanicProjectBackendApplicationTests : Started IMechanicProjectBackendApplicationTests in 12.297 seconds (process running for 14.134)
 ]]></system-out>
     <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\LUIS\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.13\byte-buddy-agent-1.14.13.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning

@@ -53,7 +53,7 @@ public class OrdenTrabajo {
     private Cuenta cuenta;
 
     @OneToMany(mappedBy = "ordenTrabajo", cascade = CascadeType.ALL)
-    private List<ServicioMecanico> serviciosMecanicos = new ArrayList<>();
+    private List<ServicioMecanico> serviciosMecanicos;
 
     @PrePersist
     protected void addOnAttributes() {

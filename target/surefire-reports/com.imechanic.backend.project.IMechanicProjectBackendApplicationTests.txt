@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.imechanic.backend.project.IMechanicProjectBackendApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 24.71 s -- in com.imechanic.backend.project.IMechanicProjectBackendApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 89.78 s -- in com.imechanic.backend.project.IMechanicProjectBackendApplicationTests

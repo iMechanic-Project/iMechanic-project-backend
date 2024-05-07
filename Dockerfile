@@ -1,4 +1,4 @@
-FROM amazoncorretto:17
+FROM amazoncorretto:21-alpine-jdk
 
 COPY target/iMechanic-project-backend-0.0.1-SNAPSHOT.jar app.jar
 

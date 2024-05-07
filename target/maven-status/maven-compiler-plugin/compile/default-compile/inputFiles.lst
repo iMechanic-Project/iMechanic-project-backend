@@ -1,6 +1,5 @@
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\AuthenticationLoginDTORequest.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\security\service\IUserDetailService.java
-C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\websocket\WebSocketController.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\service\OrdenTrabajoService.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\repository\ModeloRepository.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\VehiculoDTORequest.java
@@ -17,14 +16,12 @@ C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imech
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\MecanicoDTO.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\email\EmailConfig.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\repository\TallerRepository.java
-C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\websocket\MensajeChat.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\repository\ClienteRepository.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\MecanicoDTORequest.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\exception\HandlerException.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\exception\TokenNotFound.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\security\filter\JwtTokenValidator.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\service\VehiculoService.java
-C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\websocket\WebSocketConfig.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\VehiculoDTOResponse.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\repository\OrdenTrabajoRepository.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\security\SecurityConfig.java
@@ -39,7 +36,6 @@ C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imech
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\repository\VehiculoRepository.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\VehiculoSearchDTORequest.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\VehiculoController.java
-C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\websocket\ChatMessage.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\model\ServicioMecanico.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\model\Taller.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\model\Servicio.java
@@ -47,7 +43,6 @@ C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imech
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\CreateOrdenDTORequest.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\cors\CorsConfig.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\OrderDetailMecanicoDTO.java
-C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\websocket\SalaChat.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\OrdenTrabajoClienteDTOList.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\AuthenticationSignUpDTORequest.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\OrdenTrabajoController.java
@@ -67,7 +62,6 @@ C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imech
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\LoginDTOResponse.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\security\util\JwtAuthenticationManager.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\model\Marca.java
-C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\websocket\MensajeChatService.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\exception\EntidadNoEncontrada.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\repository\MecanicoRepository.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\repository\CuentaRepository.java
@@ -78,7 +72,6 @@ C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imech
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\repository\ServicioRepository.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\enumeration\EstadoServicio.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\repository\MarcaRepository.java
-C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\websocket\MensajeChatRepository.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\MecanicoController.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\security\util\JwtUtils.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\model\Mecanico.java

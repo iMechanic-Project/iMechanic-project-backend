@@ -9,6 +9,7 @@ com\imechanic\backend\project\exception\EntidadNoEncontrada.class
 com\imechanic\backend\project\repository\MarcaRepository.class
 com\imechanic\backend\project\repository\ServicioRepository.class
 com\imechanic\backend\project\controller\dto\AuthenticationLoginDTORequest.class
+com\imechanic\backend\project\model\MecanicoServicio.class
 com\imechanic\backend\project\controller\dto\PasoDTO.class
 com\imechanic\backend\project\controller\dto\SignUpDTOResponse.class
 com\imechanic\backend\project\controller\OrdenTrabajoController.class
@@ -31,6 +32,7 @@ com\imechanic\backend\project\exception\RoleNotAuthorized.class
 com\imechanic\backend\project\exception\CredencialesIncorrectas.class
 com\imechanic\backend\project\controller\ServicioController.class
 com\imechanic\backend\project\repository\VehiculoRepository.class
+com\imechanic\backend\project\repository\MecanicoServicioRepository.class
 com\imechanic\backend\project\controller\dto\VehiculoSearchDTOResponse.class
 com\imechanic\backend\project\security\util\JwtAuthenticationManager.class
 com\imechanic\backend\project\controller\dto\MecanicoDTOList.class

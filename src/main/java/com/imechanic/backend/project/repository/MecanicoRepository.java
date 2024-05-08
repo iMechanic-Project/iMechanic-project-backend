@@ -14,6 +14,6 @@ public interface MecanicoRepository extends JpaRepository<Mecanico, Long> {
     Optional<Mecanico> findByCorreoElectronico(String correoElectronico);
     List<Mecanico> findMecanicosByCuentaCorreoElectronico(String correoElectronico);
 
-    @Query("SELECT m FROM Mecanico m JOIN m.servicios s WHERE s.id = :serviceId")
+    @Query("SELECT ms.mecanico FROM MecanicoServicio ms WHERE ms.servicio.id = :serviceId")
     List<Mecanico> findAllByServiciosId(@Param("serviceId") Long serviceId);
 }

@@ -33,6 +33,7 @@ public class MecanicoService {
     private final ServicioRepository servicioRepository;
     private final PasoRepository pasoRepository;
     private final OrdenTrabajoRepository ordenTrabajoRepository;
+    private final MecanicoServicioRepository mecanicoServicioRepository;
     private final JwtAuthenticationManager jwtAuthenticationManager;
     private final JavaMailSender javaMailSender;
 
@@ -55,10 +56,29 @@ public class MecanicoService {
 
         return mecanicos.stream()
                 .map(mecanico -> {
-                    List<ServicioDTO> servicios = mecanico.getServicios().stream()
-                            .map(servicio -> new ServicioDTO(servicio.getId(), servicio.getNombre()))
+                    List<ServicioDTO> servicios = mecanico.getMecanicoServicios().stream()
+                            .map(mecanicoServicio -> new ServicioDTO(mecanicoServicio.getServicio().getId(), mecanicoServicio.getServicio().getNombre()))
                             .collect(Collectors.toList());
                     return new MecanicoDTO(mecanico.getNombre(), mecanico.getCorreoElectronico(), servicios);
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<MecanicoDTOList> getAllMechanicsByTallerForOrder(DecodedJWT decodedJWT) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("TALLER")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'TALLER'");
+        }
+
+        String correoElectronico = decodedJWT.getSubject();
+
+        List<Mecanico> mecanicos = mecanicoRepository.findMecanicosByCuentaCorreoElectronico(correoElectronico);
+
+        return mecanicos.stream()
+                .map(mecanico -> {
+                    return new MecanicoDTOList(mecanico.getId(), mecanico.getNombre());
                 })
                 .collect(Collectors.toList());
     }
@@ -79,9 +99,10 @@ public class MecanicoService {
         List<Servicio> serviciosActuales = cuenta.getServicios();
 
         // Obtener los servicios que se van a asignar al mecánico
-        List<Servicio> serviciosSeleccionados = serviciosActuales.stream()
-                .filter(servicio -> mecanicoDTORequest.getServicioIds().contains(servicio.getId()))
-                .toList();
+        List<Servicio> serviciosSeleccionados = mecanicoDTORequest.getServicioIds().stream()
+                .map(servicioId -> servicioRepository.findById(servicioId)
+                        .orElseThrow(() -> new EntidadNoEncontrada("No se encontró el servicio con ID: " + servicioId)))
+                .collect(Collectors.toList());
 
         Mecanico mecanico = Mecanico.builder()
                 .nombre(mecanicoDTORequest.getNombre())
@@ -93,10 +114,19 @@ public class MecanicoService {
                 .accountNoLocked(true)
                 .accountNoExpired(true)
                 .credentialNoExpired(true)
-                .servicios(serviciosSeleccionados)
                 .build();
 
         mecanicoRepository.save(mecanico);
+
+        mecanicoRepository.save(mecanico);
+
+        // Asignar los servicios al mecánico
+        for (Servicio servicio : serviciosSeleccionados) {
+            MecanicoServicio mecanicoServicio = new MecanicoServicio();
+            mecanicoServicio.setMecanico(mecanico);
+            mecanicoServicio.setServicio(servicio);
+            mecanicoServicioRepository.save(mecanicoServicio);
+        }
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(mecanico.getCorreoElectronico(), mecanico.getContrasenia(), AuthorityUtils.createAuthorityList("ROLE_" + mecanico.getRole()));
 

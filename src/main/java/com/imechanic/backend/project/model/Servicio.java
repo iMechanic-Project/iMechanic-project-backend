@@ -34,4 +34,7 @@ public class Servicio {
 
     @OneToMany(targetEntity = Paso.class, fetch = FetchType.LAZY, mappedBy = "servicio")
     private List<Paso> pasos;
+
+    @OneToMany(mappedBy = "servicio")
+    private List<MecanicoServicio> mecanicoServicios;
 }

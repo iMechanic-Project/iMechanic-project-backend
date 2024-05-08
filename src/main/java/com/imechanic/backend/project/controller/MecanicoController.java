@@ -33,6 +33,18 @@ public class MecanicoController {
         }
     }
 
+    @GetMapping("/all/order")
+    public ResponseEntity<List<MecanicoDTOList>> getAllMechanicsForOrder(HttpServletRequest request) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+
+        try {
+            List<MecanicoDTOList> mecanicos = mecanicoService.getAllMechanicsByTallerForOrder(decodedJWT);
+            return ResponseEntity.ok(mecanicos);
+        } catch (RoleNotAuthorized e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
     @GetMapping("/service/{serviceId}")
     public ResponseEntity<List<MecanicoDTOList>> getMechanicsByService(HttpServletRequest request, @PathVariable Long serviceId) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);

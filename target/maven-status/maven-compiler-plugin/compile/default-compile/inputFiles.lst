@@ -20,6 +20,7 @@ C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imech
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\MecanicoDTORequest.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\exception\HandlerException.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\exception\TokenNotFound.java
+C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\model\MecanicoServicio.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\security\filter\JwtTokenValidator.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\service\VehiculoService.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\VehiculoDTOResponse.java
@@ -46,6 +47,7 @@ C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imech
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\OrdenTrabajoClienteDTOList.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\AuthenticationSignUpDTORequest.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\OrdenTrabajoController.java
+C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\repository\MecanicoServicioRepository.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\VehiculoSearchDTOResponse.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\ServicioMecanicoDTO.java
 C:\workspace\iMechanic-Project\iMechanic-project-backend\src\main\java\com\imechanic\backend\project\controller\dto\ServicioDTO.java

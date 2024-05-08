@@ -111,4 +111,30 @@ public class OrdenTrabajoService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<ServicioMecanicoDTO> obtenerMecanicoServicioDeTaller(DecodedJWT decodedJWT) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("TALLER")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'TALLER'");
+        }
+
+        String correoElectronico = decodedJWT.getSubject();
+
+        Cuenta cuenta = cuentaRepository.findByCorreoElectronico(correoElectronico)
+                .orElseThrow(() -> new EntidadNoEncontrada("No se encontró una cuenta de taller con el correo electrónico proporcionado"));
+
+        List<Mecanico> mecanicos = cuenta.getMecanicos();
+
+        List<ServicioMecanicoDTO> servicioMecanicoDTOList = new ArrayList<>();
+        for (Mecanico mecanico: mecanicos) {
+            List<MecanicoServicio> mecanicoServicios = mecanico.getMecanicoServicios();
+            for (MecanicoServicio mecanicoServicio: mecanicoServicios) {
+                Servicio servicio = mecanicoServicio.getServicio();
+                servicioMecanicoDTOList.add(new ServicioMecanicoDTO(servicio.getId(), mecanico.getId()));
+            }
+        }
+
+        return servicioMecanicoDTOList;
+    }
 }

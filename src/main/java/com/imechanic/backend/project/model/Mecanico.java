@@ -54,6 +54,6 @@ public class Mecanico {
     @ManyToOne(targetEntity = Cuenta.class)
     private Cuenta cuenta;
 
-    @ManyToMany(targetEntity = Servicio.class, fetch = FetchType.LAZY)
-    private List<Servicio> servicios;
+    @OneToMany(mappedBy = "mecanico")
+    private List<MecanicoServicio> mecanicoServicios;
 }

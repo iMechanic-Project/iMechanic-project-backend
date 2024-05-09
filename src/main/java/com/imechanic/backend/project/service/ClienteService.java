@@ -1,10 +1,7 @@
 package com.imechanic.backend.project.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.imechanic.backend.project.controller.dto.OrdenTrabajoClienteDTOList;
-import com.imechanic.backend.project.controller.dto.OrderDetailDTO;
-import com.imechanic.backend.project.controller.dto.PasoDTO;
-import com.imechanic.backend.project.controller.dto.ServicioDetalleDTO;
+import com.imechanic.backend.project.controller.dto.*;
 import com.imechanic.backend.project.exception.EntidadNoEncontrada;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
 import com.imechanic.backend.project.model.*;
@@ -79,9 +76,12 @@ public class ClienteService {
                     Mecanico mecanico = servicioMecanico.getMecanico();
                     List<Paso> pasos = servicio.getPasos();
                     List<PasoDTO> pasosDTO = pasos.stream()
-                            .map(paso -> new PasoDTO(paso.getNombre(), paso.isCompletado()))
+                            .map(paso -> new PasoDTO(paso.getId(), paso.getNombre()))
                             .collect(Collectors.toList());
-                    return new ServicioDetalleDTO(servicio.getNombre(), mecanico.getNombre(), servicio.getEstadoServicio().name(), pasosDTO);
+                    return new ServicioDetalleDTO(new ServicioDTO(servicio.getId(), servicio.getNombre()),
+                            new MecanicoDTOList(mecanico.getId(), mecanico.getNombre()),
+                            servicio.getEstadoServicio().name(),
+                            pasosDTO);
                 })
                 .collect(Collectors.toList());
 

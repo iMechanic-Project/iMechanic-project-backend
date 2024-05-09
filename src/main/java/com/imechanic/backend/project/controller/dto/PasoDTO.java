@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PasoDTO {
+    private Long id;
     private String nombre;
-    private boolean completado;
 }

@@ -3,6 +3,7 @@ package com.imechanic.backend.project.controller;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.imechanic.backend.project.controller.dto.*;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
+import com.imechanic.backend.project.model.Paso;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import com.imechanic.backend.project.service.MecanicoService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -73,16 +74,22 @@ public class MecanicoController {
         return ResponseEntity.ok(mecanicoService.obtenerDetalleOrden(orderId, decodedJWT));
     }
 
-    @PutMapping("/iniciar-orden/{orderId}")
+    @PutMapping("/iniciar-servicio/{orderId}")
     public ResponseEntity<String> iniciarServicio(HttpServletRequest request, @PathVariable Long orderId) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
         return ResponseEntity.ok(mecanicoService.iniciarServicioOrden(decodedJWT, orderId));
     }
 
-    @PutMapping("/service/{serviceId}/paso/{pasoId}/complete")
-    public ResponseEntity<?> completarPaso(@PathVariable Long serviceId, @PathVariable Long pasoId, HttpServletRequest request) {
+    @PutMapping("/orden/{ordenId}/service/{serviceId}/paso/{pasoId}/complete")
+    public ResponseEntity<MecanicoPasoDTO> completarPaso(HttpServletRequest request, @PathVariable Long ordenId, @PathVariable Long serviceId, @PathVariable Long pasoId) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
-        return ResponseEntity.ok(mecanicoService.completarPaso(serviceId, pasoId, decodedJWT));
+        return ResponseEntity.ok(mecanicoService.completarPaso(decodedJWT, ordenId, serviceId, pasoId));
+    }
+
+    @GetMapping("/orden/{ordenId}/service/{serviceId}/complete-list")
+    public ResponseEntity<List<Paso>> getPasosCompletos(HttpServletRequest request, @PathVariable Long ordenId, @PathVariable Long serviceId) {
+        DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
+        return ResponseEntity.ok(mecanicoService.getPasosCompletados(decodedJWT, ordenId, serviceId));
     }
 
     @PutMapping("/terminar-orden/{orderId}")

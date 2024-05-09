@@ -5,6 +5,7 @@ import com.imechanic.backend.project.controller.dto.*;
 import com.imechanic.backend.project.enumeration.EstadoOrden;
 import com.imechanic.backend.project.enumeration.Role;
 import com.imechanic.backend.project.exception.EntidadNoEncontrada;
+import com.imechanic.backend.project.exception.PasoYaCompletado;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
 import com.imechanic.backend.project.model.*;
 import com.imechanic.backend.project.repository.*;
@@ -34,6 +35,7 @@ public class MecanicoService {
     private final PasoRepository pasoRepository;
     private final OrdenTrabajoRepository ordenTrabajoRepository;
     private final MecanicoServicioRepository mecanicoServicioRepository;
+    private final MecanicoPasoRepository mecanicoPasoRepository;
     private final JwtAuthenticationManager jwtAuthenticationManager;
     private final JavaMailSender javaMailSender;
 
@@ -210,18 +212,17 @@ public class MecanicoService {
 
         Servicio servicio = servicioMecanico.getServicio();
 
-        List<Paso> pasos = servicio.getPasos();
-
-        List<PasoDTO> nombrePasos = pasos.stream()
-                .map(paso -> new PasoDTO(paso.getNombre(), paso.isCompletado()))
+        List<PasoDTO> nombrePasos = servicio.getPasos().stream()
+                .map(paso -> new PasoDTO(paso.getId(), paso.getNombre()))
                 .toList();
 
-        return new OrderDetailMecanicoDTO(ordenTrabajo.getNombreCliente(),
+        return new OrderDetailMecanicoDTO(ordenTrabajo.getId(),
+                ordenTrabajo.getNombreCliente(),
                 ordenTrabajo.getDireccionCliente(),
                 ordenTrabajo.getTelefonoCliente(),
-                servicio.getNombre(),
+                new ServicioDTO(servicio.getId(), servicio.getNombre()),
                 servicio.getEstadoServicio().toString(),
-                mecanico.getNombre(),
+                new MecanicoDTOList(mecanico.getId(), mecanico.getNombre()),
                 nombrePasos);
     }
 
@@ -236,32 +237,92 @@ public class MecanicoService {
         OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(orderId)
                 .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + orderId + " no encontrada"));
 
+        if (ordenTrabajo.getEstado() == EstadoOrden.EN_PROCESO) {
+            return "ESTADO DE ORDEN ACTUALIZADA 1: " + ordenTrabajo.getEstado();
+        }
+
+        if (ordenTrabajo.getEstado() == EstadoOrden.FINALIZADO) {
+            return "ESTADO DE ORDEN ACTUALIZADA 2: "+ ordenTrabajo.getEstado();
+        }
+
         ordenTrabajo.setEstado(EstadoOrden.EN_PROCESO);
         ordenTrabajoRepository.save(ordenTrabajo);
-
-        return "Estado actualizado: " + ordenTrabajo.getEstado();
+        return "ESTADO DE ORDEN ACTUALIZADA 3: " + ordenTrabajo.getEstado();
     }
 
     @Transactional
-    public String completarPaso(Long serviceId, Long pasoId, DecodedJWT decodedJWT) {
+    public MecanicoPasoDTO completarPaso(DecodedJWT decodedJWT, Long ordenId, Long servicioId, Long pasoId) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
         if (!roleName.equals("MECANICO")) {
             throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO'");
         }
 
-        Servicio servicio = servicioRepository.findById(serviceId)
-                .orElseThrow(() -> new EntidadNoEncontrada("Servicio con ID: " + serviceId + "no encontrado"));
+        Mecanico mecanico = mecanicoRepository.findByCorreoElectronico(decodedJWT.getSubject())
+                .orElseThrow(() -> new EntidadNoEncontrada("Mecanico con correo: " + decodedJWT.getSubject() + " no encontrado"));
 
-        Paso paso = servicio.getPasos().stream()
-                .filter(p -> p.getId().equals(pasoId))
+        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(ordenId)
+                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + ordenId + " no encontrada"));
+
+        // Verificar si el mecánico está asignado a la orden de trabajo y al servicio
+        ServicioMecanico servicioMecanico = ordenTrabajo.getServiciosMecanicos().stream()
+                .filter(servicio -> servicio.getMecanico().equals(mecanico) && servicio.getServicio().getId().equals(servicioId))
                 .findFirst()
+                .orElseThrow(() -> new EntidadNoEncontrada("El mecánico no está asignado al servicio en la orden de trabajo"));
+
+        // Verificar si el paso ya ha sido completado
+        boolean pasoCompletado = mecanicoPasoRepository.existsByOrdenTrabajoIdAndServicioIdAndPasoId(ordenId, servicioId, pasoId);
+        if (pasoCompletado) {
+            throw new PasoYaCompletado("El paso con ID: " + pasoId + " ya ha sido completado para esta orden de trabajo y servicio");
+        }
+
+        // Buscar el paso
+        Paso paso = pasoRepository.findById(pasoId)
                 .orElseThrow(() -> new EntidadNoEncontrada("Paso con ID: " + pasoId + " no encontrado"));
 
-        paso.setCompletado(true);
-        pasoRepository.save(paso);
+        // Completar el paso
+        MecanicoPaso mecanicoPaso = MecanicoPaso.builder()
+                .ordenTrabajo(ordenTrabajo)
+                .mecanico(mecanico)
+                .servicio(servicioMecanico.getServicio())
+                .paso(paso)
+                .complete(true)
+                .build();
 
-        return servicio.getPasos().toString();
+        mecanicoPasoRepository.save(mecanicoPaso);
+
+        return new MecanicoPasoDTO(ordenTrabajo.getId(), mecanico.getId(), servicioMecanico.getServicio().getId(), servicioMecanico.getServicio().getNombre(), paso.getId(), mecanicoPaso.isComplete());
+    }
+
+    @Transactional(readOnly = true)
+    public List<Paso> getPasosCompletados(DecodedJWT decodedJWT, Long ordenId, Long servicioId) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("MECANICO")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO'");
+        }
+
+        Mecanico mecanico = mecanicoRepository.findByCorreoElectronico(decodedJWT.getSubject())
+                .orElseThrow(() -> new EntidadNoEncontrada("Mecanico con correo: " + decodedJWT.getSubject() + " no encontrado"));
+
+        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(ordenId)
+                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + ordenId + " no encontrada"));
+
+        // Verificar si el mecánico está asignado a la orden de trabajo y al servicio
+        ServicioMecanico servicioMecanico = ordenTrabajo.getServiciosMecanicos().stream()
+                .filter(servicio -> servicio.getMecanico().equals(mecanico) && servicio.getServicio().getId().equals(servicioId))
+                .findFirst()
+                .orElseThrow(() -> new EntidadNoEncontrada("El mecánico no está asignado al servicio en la orden de trabajo"));
+
+        // Obtener los MecanicoPaso completados del mecánico en el servicio específico
+        List<MecanicoPaso> mecanicoPasosCompletados = mecanicoPasoRepository.findAllByMecanicoIdAndServicioIdAndOrdenTrabajoId(mecanico.getId(), servicioMecanico.getServicio().getId(), ordenTrabajo.getId());
+
+        // Extraer los pasos completados de los registros de MecanicoPaso
+
+        return mecanicoPasosCompletados.stream()
+                .filter(MecanicoPaso::isComplete)
+                .map(MecanicoPaso::getPaso)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)

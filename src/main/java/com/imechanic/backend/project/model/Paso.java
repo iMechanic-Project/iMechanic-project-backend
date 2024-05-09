@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,9 +24,11 @@ public class Paso {
 
     private int orden;
 
-    private boolean completado;
-
     @ManyToOne(targetEntity = Servicio.class)
     @JsonIgnore
     private Servicio servicio;
+
+    @OneToMany(mappedBy = "paso")
+    @JsonIgnore
+    private List<MecanicoPaso> mecanicoPasos;
 }

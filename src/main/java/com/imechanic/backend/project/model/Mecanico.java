@@ -56,4 +56,7 @@ public class Mecanico {
 
     @OneToMany(mappedBy = "mecanico")
     private List<MecanicoServicio> mecanicoServicios;
+
+    @OneToMany(mappedBy = "mecanico")
+    private List<MecanicoPaso> mecanicoPasos;
 }

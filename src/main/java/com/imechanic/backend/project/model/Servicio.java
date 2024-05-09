@@ -37,4 +37,7 @@ public class Servicio {
 
     @OneToMany(mappedBy = "servicio")
     private List<MecanicoServicio> mecanicoServicios;
+
+    @OneToMany(mappedBy = "servicio")
+    private List<MecanicoPaso> mecanicoPasos;
 }

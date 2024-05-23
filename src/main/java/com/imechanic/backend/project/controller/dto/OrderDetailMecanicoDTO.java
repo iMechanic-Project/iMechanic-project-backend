@@ -13,9 +13,10 @@ public class OrderDetailMecanicoDTO {
     private Long id;
     private String nombre;
     private String direccion;
-    private String telefono;
+    private String telefonoTaller;
     private ServicioDTO servicio;
     private String estadoServicio;
     private MecanicoDTOList mecanico;
+    private String telefonoMecanico;
     private List<PasoDTO> pasos;
 }

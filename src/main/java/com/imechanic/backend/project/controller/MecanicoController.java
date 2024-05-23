@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/mecanico")
@@ -74,10 +75,10 @@ public class MecanicoController {
         return ResponseEntity.ok(mecanicoService.obtenerDetalleOrden(orderId, decodedJWT));
     }
 
-    @PutMapping("/iniciar-servicio/{orderId}")
-    public ResponseEntity<String> iniciarServicio(HttpServletRequest request, @PathVariable Long orderId) {
+    @PutMapping("/iniciar/{orderId}/servicio/{serviceId}")
+    public ResponseEntity<Map<String, String>> iniciarServicio(HttpServletRequest request, @PathVariable Long orderId, @PathVariable Long serviceId) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
-        return ResponseEntity.ok(mecanicoService.iniciarServicioOrden(decodedJWT, orderId));
+        return ResponseEntity.ok(mecanicoService.iniciarServicioOrden(decodedJWT, orderId, serviceId).getBody());
     }
 
     @PutMapping("/orden/{ordenId}/service/{serviceId}/paso/{pasoId}/complete")
@@ -92,9 +93,9 @@ public class MecanicoController {
         return ResponseEntity.ok(mecanicoService.getPasosCompletados(decodedJWT, ordenId, serviceId));
     }
 
-    @PutMapping("/terminar-orden/{orderId}")
-    public ResponseEntity<String> terminarServicio(HttpServletRequest request, @PathVariable Long orderId) {
+    @PutMapping("/terminar/{orderId}/servicio/{serviceId}")
+    public ResponseEntity<Map<String, String>> terminarServicio(HttpServletRequest request, @PathVariable Long orderId, @PathVariable Long serviceId) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
-        return ResponseEntity.ok(mecanicoService.terminarServicioOrden(decodedJWT, orderId));
+        return ResponseEntity.ok(mecanicoService.terminarServicioOrden(decodedJWT, orderId, serviceId).getBody());
     }
 }

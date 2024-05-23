@@ -13,5 +13,6 @@ public class MecanicoDTORequest {
     private String nombre;
     private String correoElectronico;
     private String contrasenia;
+    private String telefono;
     private List<Long> servicioIds;
 }

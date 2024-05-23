@@ -10,8 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ServicioDetalleDTO {
-    private String nombreServicio;
-    private String nombreMecanico;
+    private ServicioDTO servicio;
+    private MecanicoDTOList mecanico;
     private String estadoServicio;
-    private List<String> pasos;
+    private List<PasoDTO> pasos;
 }

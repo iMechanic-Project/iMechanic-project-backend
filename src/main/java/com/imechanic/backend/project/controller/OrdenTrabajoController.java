@@ -3,6 +3,7 @@ package com.imechanic.backend.project.controller;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.imechanic.backend.project.controller.dto.CreateOrdenDTORequest;
 import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTOList;
+import com.imechanic.backend.project.controller.dto.ServicioMecanicoDTO;
 import com.imechanic.backend.project.controller.dto.VehiculoSearchDTOResponse;
 import com.imechanic.backend.project.security.util.JwtAuthenticationManager;
 import com.imechanic.backend.project.service.OrdenTrabajoService;
@@ -35,9 +36,11 @@ public class OrdenTrabajoController {
         return ResponseEntity.ok(ordenes);
     }
 
-    @PutMapping("/{orderId}/cambiar-estado")
-    public ResponseEntity<String> actualizarEstadoOrden(HttpServletRequest request, @PathVariable Long orderId) {
+    @GetMapping("/todas/servicios-mecanico")
+    public ResponseEntity<List<ServicioMecanicoDTO>> obtenerServicioMecanicoDeTaller(HttpServletRequest request) {
         DecodedJWT decodedJWT = jwtAuthenticationManager.validateToken(request);
-        return ResponseEntity.ok(ordenTrabajoService.iniciarOrden(decodedJWT, orderId));
+
+        List<ServicioMecanicoDTO> ordenes = ordenTrabajoService.obtenerMecanicoServicioDeTaller(decodedJWT);
+        return ResponseEntity.ok(ordenes);
     }
 }

@@ -1,7 +1,10 @@
 package com.imechanic.backend.project.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.imechanic.backend.project.controller.dto.*;
+import com.imechanic.backend.project.controller.dto.CreateOrdenDTORequest;
+import com.imechanic.backend.project.controller.dto.OrdenTrabajoDTOList;
+import com.imechanic.backend.project.controller.dto.ServicioMecanicoDTO;
+import com.imechanic.backend.project.controller.dto.VehiculoSearchDTOResponse;
 import com.imechanic.backend.project.enumeration.EstadoOrden;
 import com.imechanic.backend.project.exception.EntidadNoEncontrada;
 import com.imechanic.backend.project.exception.RoleNotAuthorized;
@@ -109,20 +112,29 @@ public class OrdenTrabajoService {
     }
 
     @Transactional(readOnly = true)
-    public String iniciarOrden(DecodedJWT decodedJWT, Long orderId) {
+    public List<ServicioMecanicoDTO> obtenerMecanicoServicioDeTaller(DecodedJWT decodedJWT) {
         String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
 
-        if (!roleName.equals("MECANICO") && !roleName.equals("TALLER")) {
-            throw new RoleNotAuthorized("El rol del usuario no es 'MECANICO' ni 'TALLER'");
+        if (!roleName.equals("TALLER")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'TALLER'");
         }
 
-        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(orderId)
-                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + orderId + " no encontrada"));
+        String correoElectronico = decodedJWT.getSubject();
 
-        ordenTrabajo.setEstado(EstadoOrden.EN_PROCESO);
-        ordenTrabajoRepository.save(ordenTrabajo);
+        Cuenta cuenta = cuentaRepository.findByCorreoElectronico(correoElectronico)
+                .orElseThrow(() -> new EntidadNoEncontrada("No se encontró una cuenta de taller con el correo electrónico proporcionado"));
 
-        return "Estado actualizado: " + ordenTrabajo.getEstado();
+        List<Mecanico> mecanicos = cuenta.getMecanicos();
+
+        List<ServicioMecanicoDTO> servicioMecanicoDTOList = new ArrayList<>();
+        for (Mecanico mecanico: mecanicos) {
+            List<MecanicoServicio> mecanicoServicios = mecanico.getMecanicoServicios();
+            for (MecanicoServicio mecanicoServicio: mecanicoServicios) {
+                Servicio servicio = mecanicoServicio.getServicio();
+                servicioMecanicoDTOList.add(new ServicioMecanicoDTO(servicio.getId(), mecanico.getId()));
+            }
+        }
+
+        return servicioMecanicoDTOList;
     }
-
 }

@@ -10,11 +10,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDetailMecanicoDTO {
+    private Long id;
     private String nombre;
     private String direccion;
-    private String telefono;
-    private String servicio;
+    private String telefonoTaller;
+    private ServicioDTO servicio;
     private String estadoServicio;
-    private String nombreMecanico;
-    private List<String> pasos;
+    private MecanicoDTOList mecanico;
+    private String telefonoMecanico;
+    private List<PasoDTO> pasos;
 }

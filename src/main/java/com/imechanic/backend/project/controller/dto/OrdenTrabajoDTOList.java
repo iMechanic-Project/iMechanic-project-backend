@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrdenTrabajoDTOList {
+    private Long id;
     private String placa;
     private String nombreCliente;
     private String fechaRegistro;

@@ -19,6 +19,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -43,6 +44,9 @@ public class IUserDetailService implements UserDetailsService {
 
     @Value("${spring.email.sender.user}")
     private String user;
+
+    @Value("${url.client.side}")
+    private String baseUrl;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -80,7 +84,11 @@ public class IUserDetailService implements UserDetailsService {
 
         String accessToken = jwtUtils.createToken(authentication);
 
-        return new LoginDTOResponse(correoElectronico, "User logged successfully", accessToken, true);
+        return new LoginDTOResponse("User logged successfully", accessToken,
+                authentication.getAuthorities().stream()
+                        .findFirst()
+                        .map(GrantedAuthority::getAuthority)
+                        .orElse(""));
     }
 
     private Authentication authenticate(String correoElectronico, String contrasenia) {
@@ -122,7 +130,7 @@ public class IUserDetailService implements UserDetailsService {
         sendSimpleMessage(
                 cuentaCreated.getCorreoElectronico(),
                 user,
-                "Estimado/a " + cuentaCreated.getNombre() + ",\n\nGracias por registrarte en iMechanic. Por favor, haz clic en el siguiente enlace para confirmar tu cuenta:\n\nhttp://localhost:4200/verificar/" + accessToken + "\n\nSaludos,\nEl equipo de iMechanic");
+                "Estimado/a " + cuentaCreated.getNombre() + ",\n\nGracias por registrarte en iMechanic. Por favor, haz clic en el siguiente enlace para confirmar tu cuenta:\n\n" + baseUrl + "/verificar/" + accessToken + "\n\nSaludos,\nEl equipo de iMechanic");
 
         return new SignUpDTOResponse("Welcome to iMechanic '".concat(correoElectronico).concat("'"));
     }

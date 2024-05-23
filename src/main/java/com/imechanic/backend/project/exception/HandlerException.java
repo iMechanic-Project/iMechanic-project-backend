@@ -59,4 +59,16 @@ public class HandlerException {
                         .date(new Date())
                         .build());
     }
+
+    @ExceptionHandler(PasoYaCompletado.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<ErrorDTO> handlePasoYaCompletado(PasoYaCompletado ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(ErrorDTO.builder()
+                        .message(ex.getMessage())
+                        .error("Paso ya completado")
+                        .status(HttpStatus.FORBIDDEN.value())
+                        .date(new Date())
+                        .build());
+    }
 }

@@ -4,6 +4,7 @@ import com.imechanic.backend.project.enumeration.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +37,10 @@ public class Mecanico {
     @Size(min = 8, message = "El campos 'contraseña' debe tener como minimo 8 caracteres")
     private String contrasenia;
 
+    @NotBlank(message = "El campo 'telefono' es obligatorio")
+    @Pattern(regexp = "^[0-9]{9}$", message = "El teléfono debe contener solo 9 números")
+    private String telefono;
+
     @Column(name = "is_enabled")
     private boolean isEnabled;
 
@@ -54,6 +59,9 @@ public class Mecanico {
     @ManyToOne(targetEntity = Cuenta.class)
     private Cuenta cuenta;
 
-    @ManyToMany(targetEntity = Servicio.class, fetch = FetchType.LAZY)
-    private List<Servicio> servicios;
+    @OneToMany(mappedBy = "mecanico")
+    private List<MecanicoServicio> mecanicoServicios;
+
+    @OneToMany(mappedBy = "mecanico")
+    private List<MecanicoPaso> mecanicoPasos;
 }

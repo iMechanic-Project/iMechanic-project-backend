@@ -52,9 +52,41 @@ public class TallerService {
                 })
                 .collect(Collectors.toList());
 
-        return new OrderDetailDTO(ordenTrabajo.getCuenta().getNombre(),
+        return new OrderDetailDTO(ordenTrabajo.getId(),
+                ordenTrabajo.getCuenta().getNombre(),
                 ordenTrabajo.getCuenta().getDireccion(),
                 ordenTrabajo.getCuenta().getTelefono(),
                 serviciosDetalle);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Paso> getPasosCompletados(DecodedJWT decodedJWT, Long ordenId) {
+        String roleName = jwtAuthenticationManager.getUserRole(decodedJWT);
+
+        if (!roleName.equals("TALLER")) {
+            throw new RoleNotAuthorized("El rol del usuario no es 'TALLER'");
+        }
+
+        Cuenta cuenta = cuentaRepository.findByCorreoElectronico(decodedJWT.getSubject())
+                .orElseThrow(() -> new EntidadNoEncontrada("Mecanico con correo: " + decodedJWT.getSubject() + " no encontrado"));
+
+        OrdenTrabajo ordenTrabajo = ordenTrabajoRepository.findById(ordenId)
+                .orElseThrow(() -> new EntidadNoEncontrada("Orden de trabajo con ID: " + ordenId + " no encontrada"));
+
+        // Verificar si el mecánico está asignado a la orden de trabajo y al servicio
+        ServicioMecanico servicioMecanico = ordenTrabajo.getServiciosMecanicos().stream()
+                .filter(servicio -> servicio.getMecanico().equals(mecanico) && servicio.getServicio().getId().equals(servicioId))
+                .findFirst()
+                .orElseThrow(() -> new EntidadNoEncontrada("El mecánico no está asignado al servicio en la orden de trabajo"));
+
+        // Obtener los MecanicoPaso completados del mecánico en el servicio específico
+        List<MecanicoPaso> mecanicoPasosCompletados = mecanicoPasoRepository.findAllByMecanicoIdAndServicioIdAndOrdenTrabajoId(mecanico.getId(), servicioMecanico.getServicio().getId(), ordenTrabajo.getId());
+
+        // Extraer los pasos completados de los registros de MecanicoPaso
+
+        return mecanicoPasosCompletados.stream()
+                .filter(MecanicoPaso::isComplete)
+                .map(MecanicoPaso::getPaso)
+                .collect(Collectors.toList());
     }
 }

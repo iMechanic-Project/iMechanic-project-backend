@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDetailDTO {
+    private Long id;
     private String nombreTaller;
     private String direccionTaller;
     private String telefonoTaller;

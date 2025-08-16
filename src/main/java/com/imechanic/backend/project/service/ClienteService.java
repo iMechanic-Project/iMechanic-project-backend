@@ -85,7 +85,8 @@ public class ClienteService {
                 })
                 .collect(Collectors.toList());
 
-        return new OrderDetailDTO(ordenTrabajo.getCuenta().getNombre(),
+        return new OrderDetailDTO(ordenTrabajo.getId(),
+                ordenTrabajo.getCuenta().getNombre(),
                 ordenTrabajo.getCuenta().getDireccion(),
                 ordenTrabajo.getCuenta().getTelefono(),
                 serviciosDetalle);
